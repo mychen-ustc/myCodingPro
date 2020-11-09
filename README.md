@@ -1,2 +1,0 @@
-# myCodingPro
-leetcode

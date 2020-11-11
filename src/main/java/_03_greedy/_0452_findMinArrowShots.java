@@ -49,7 +49,7 @@
  * 3.如果新的气球没办法击穿，就增加一名弓箭手。
  */
 
-package greedy;
+package _03_greedy;
 
 import java.util.Arrays;
 import java.util.Comparator;

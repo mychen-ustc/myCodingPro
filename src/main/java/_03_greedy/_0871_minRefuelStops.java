@@ -53,7 +53,7 @@ package _03_greedy;
 
 import java.util.PriorityQueue;
 
-public class _871_minRefuelStops {
+public class _0871_minRefuelStops {
     static public int minRefuelStops(int target, int startFuel, int[][] stations) {
         int count = 0;
         int curFuel = startFuel;

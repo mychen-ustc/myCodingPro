@@ -33,7 +33,7 @@
 
 package _03_greedy;
 
-public class _376_wiggleMaxLength {
+public class _0376_wiggleMaxLength {
     public static int wiggleMaxLength(int[] nums) {
         if (nums.length < 2) {   // 序列个数小于等于2，直接是摆动序列
             return nums.length;

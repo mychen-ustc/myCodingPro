@@ -23,6 +23,10 @@
  * 来源：力扣（LeetCode）
  * 链接：https://leetcode-cn.com/problems/subsets
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+ * <p>
+ * 思路：
+ * 位运算: A元素为100=4, B元素为010=2,C元素为001=1
+ * 如构造某一结合，即使用ABC对应的三个整数与该集合对应的整数做&运算，如果是真，则将该元素push到集合中。
  */
 
 package _04_recursion_recall;
@@ -30,31 +34,31 @@ package _04_recursion_recall;
 import java.util.ArrayList;
 import java.util.List;
 
-class Solution078 {
-    //
-    List<Integer> path = new ArrayList<>();
-    List<List<Integer>> res = new ArrayList<>();
-
-    public void generate(int[] nums, int start) {
-        res.add(new ArrayList<>(path));
-        for (int i = start; i < nums.length; i++) {
-            path.add(nums[i]);
-            generate(nums, i + 1);
-            path.remove(path.size() - 1);
-        }
-    }
+class Solution0078_2 {
 
     public List<List<Integer>> subsets(int[] nums) {
-        generate(nums, 0);
-        return res;
+        List<List<Integer>> result = new ArrayList<>();
+        int max = 1 << nums.length;  // 最大值
+
+        for (int i = 0; i < max; i++) {
+            List<Integer> item = new ArrayList<>();
+            for (int j = 0; j < nums.length; j++) { // 遍历每个数字，如果该位是1，就放入结果中
+                if ((i & (1 << j)) > 0) {
+                    item.add(nums[j]);
+                }
+            }
+            result.add(item);
+        }
+
+        return result;
     }
 }
 
-public class _078_subsets {
+public class _0078_subsets_2 {
 
     public static void main(String[] args) {
-        Solution078 solution = new Solution078();
-        int nums[] = {1, 2, 3};
+        Solution0078_2 solution = new Solution0078_2();
+        int nums[] = {1, 2, 3, -1, 9};
         List<List<Integer>> result = solution.subsets(nums);
         System.out.println(result);
     }

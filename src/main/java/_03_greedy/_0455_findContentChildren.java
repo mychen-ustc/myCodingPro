@@ -41,7 +41,7 @@ package _03_greedy;
 import java.util.Arrays;
 
 
-public class _455_findContentChildren {
+public class _0455_findContentChildren {
     public static int findContentChildren(int[] g, int[] s) {
         Arrays.sort(g);
         Arrays.sort(s);

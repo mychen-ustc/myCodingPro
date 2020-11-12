@@ -27,7 +27,7 @@
 
 package _03_greedy;
 
-public class _055_canJump {
+public class _0055_canJump {
     static public boolean canJump(int[] nums) {
         int index[] = new int[nums.length];
         // 初始化每个位置能跳到的最远位置

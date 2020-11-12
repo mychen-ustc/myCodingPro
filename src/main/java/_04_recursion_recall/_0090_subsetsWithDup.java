@@ -24,25 +24,24 @@
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  * <p>
  * <p>
-
  */
 
 package _04_recursion_recall;
 
 import java.util.List;
 
-class Solution090 {
+class Solution0090 {
 
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         return null;
     }
 }
 
-public class _90_subsetsWithDup {
+public class _0090_subsetsWithDup {
     public static void main(String[] args) {
-        Solution090 solution = new Solution090();
+        Solution0090 solution = new Solution0090();
         int nums[] = {1, 2, 3};
-        List<List<Integer>> result = Solution090.subsetsWithDup(nums);
+        List<List<Integer>> result = solution.subsetsWithDup(nums);
         System.out.println(result);
     }
 

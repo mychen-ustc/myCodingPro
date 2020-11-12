@@ -36,7 +36,7 @@ package _03_greedy;
 
 import java.util.Stack;
 
-public class _402_removeKdigits {
+public class _0402_removeKdigits {
     static public String removeKdigits(String num, int k) {
         int cnt = 0;
         Stack<Integer> st = new Stack<Integer>();

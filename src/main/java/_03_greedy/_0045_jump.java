@@ -32,7 +32,7 @@
 
 package _03_greedy;
 
-public class _045_jump {
+public class _0045_jump {
     static public int jump(int[] nums) {
         if (nums.length < 2) return 0;  // 少于2步，不需要跳跃
         int noJumpMaxIndex = 0;  // 如果不增加1次跳跃，能到达的最远的地方

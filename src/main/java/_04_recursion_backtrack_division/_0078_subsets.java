@@ -29,7 +29,7 @@
  * 选择放入该元素，队规进行后续元素的选择，完成放入该元素后续所有元素的试探。之后将其拿出，再进行一次选择不放入该元素，递归进行后续元素的选择。
  */
 
-package _04_recursion_recall;
+package _04_recursion_backtrack_division;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -22,7 +22,7 @@
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 
-package _04_recursion_recall;
+package _04_recursion_backtrack_division;
 
 import java.util.ArrayList;
 import java.util.List;

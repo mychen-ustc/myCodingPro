@@ -32,7 +32,7 @@
  *
  */
 
-package _04_recursion_backtrack_division;
+package com.code._04_recursion_backtrack_division;
 
 import java.util.ArrayList;
 import java.util.List;

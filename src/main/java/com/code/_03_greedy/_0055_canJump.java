@@ -25,7 +25,7 @@
  */
 
 
-package _03_greedy;
+package com.code._03_greedy;
 
 public class _0055_canJump {
     static public boolean canJump(int[] nums) {

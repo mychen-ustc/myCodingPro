@@ -32,7 +32,7 @@
  * 这种做法一定能够保证最后的字典序最小，当然如果操作到最后还剩下一些操作次数的话，因为最后我们留下的串是递增的，则删除最后若干个字符就OK了。
  */
 
-package _03_greedy;
+package com.code._03_greedy;
 
 import java.util.Stack;
 

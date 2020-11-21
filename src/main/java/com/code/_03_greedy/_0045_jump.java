@@ -30,7 +30,7 @@
  * 5.如果遍历的过程中，nums[i]+i更大，则更新 jumpMaxIndex = nums[i] + i
  */
 
-package _03_greedy;
+package com.code._03_greedy;
 
 public class _0045_jump {
     static public int jump(int[] nums) {

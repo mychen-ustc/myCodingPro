@@ -29,7 +29,7 @@
  * 如构造某一结合，即使用ABC对应的三个整数与该集合对应的整数做&运算，如果是真，则将该元素push到集合中。
  */
 
-package _04_recursion_backtrack_division;
+package com.code._04_recursion_backtrack_division;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -33,17 +33,17 @@ import java.util.List;
 import java.util.Stack;
 
 
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
 
-    TreeNode(int x) {
-        val = x;
-    }
-}
-
-class Solution {
+class Solution_113 {
     List<List<Integer>> res = new ArrayList<>();
     Stack<Integer> path = new Stack<>();    // 用栈存储路径
 
@@ -89,7 +89,7 @@ public class _113_pathSum {
         d.right = h;
         f.left = i;
         f.right = j;
-        Solution solution = new Solution();
+        Solution_113 solution = new Solution_113();
         List<List<Integer>> res = solution.pathSum(a, 22);
         System.out.println(res);
     }

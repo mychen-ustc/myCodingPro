@@ -33,6 +33,32 @@
  * //著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 
+/*
+//思路：用人思考的方式去向想递归。思考模式，先从左子树里面看有没有p、q中任意一个元素，再从右子树中看有没有p、q中任意一个元素。如果其中一个有了就向上返回根节点。
+//
+//递归点：
+//
+//左子树查找有没有p、q中任意一个元素
+//
+//右子树查找有没有p、q中任意一个元素
+//
+//返回值的情况：
+//
+//当root为null，肯定要返回null
+//当root等于p、q中任意一个元素，表明这个分支肯定有用，返回再说
+//判断左边和右边的返回值情况：
+//​ case 1：left ,right都不空，则root可以直接返回
+//
+//​ case 2 ： 其中有一个为空，返回非空的那一支。p、q都在这一支非空的上面
+//
+//​ case 3: 两个都为空，则返回空吧。就把这个分支放弃了
+//
+//作者：zxh1008610086
+//链接：https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/solution/shen-du-xiang-jie-zui-jin-gong-gong-zu-xian-qing-x/
+//来源：力扣（LeetCode）
+//著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+ */
+
 package com.code._05_tree_graph;
 
 /**
@@ -45,8 +71,23 @@ package com.code._05_tree_graph;
  * }
  */
 class Solution_0236 {
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null) {
+            return null;
+        }
+        if (root == p || root == q) {
+            return root;
+        }
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        if (left != null && right != null) {
+            return root;
+        }
+        if (left == null && right == null) {
+            return null;
+        }
+        return left == null ? right : left;
     }
 }
 
@@ -71,7 +112,7 @@ public class _0236_lowestCommonAncestor {
         e.left = h;
         e.right = i;
         Solution_0236 solution = new Solution_0236();
-        TreeNode node = solution.lowestCommonAncestor(a, b, c);
+        TreeNode node = solution.lowestCommonAncestor(a, d, i);
         System.out.println(node);
     }
 

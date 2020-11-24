@@ -52,33 +52,34 @@ package com.code._05_tree_graph;
 class Solution_0114 {
     public void flatten(TreeNode root) {
         TreeNode last = null;
-        preorder(root, last);   // 当前子树的先序遍历的最后一个节点，传引用会传出来
+        preorder(root);   // 当前子树的先序遍历的最后一个节点，传引用会传出来
     }
 
-    public void preorder(TreeNode node, TreeNode last) {
+    public TreeNode preorder(TreeNode node) {
+        TreeNode last = null;
         if(node == null)
-            return;
+            return null;
         if (node.left == null && node.right == null) {
             last = node;
-            return;
         }
         TreeNode left = node.left;  // 备份左子节点的引用
         TreeNode right = node.right;    // 备份右子节点的引用
         TreeNode leftLast = null;   // 左子树最后一个节点
         TreeNode rightLast = null;  // 右子树最后一个节点
         if (left != null) { // 左子树不为空
-            preorder(left, leftLast);   // 递归展开左子树
+            leftLast = preorder(left);   // 递归展开左子树
             node.left = null;   // 左子树置为空
             node.right = left;  // 将左子树首节点设置为右孩子
             last = leftLast;    // 将该节点的last设置成左子树的最后一个节点
         }
         if (right != null) {
-            preorder(right, rightLast); // 递归展开右子树
+            rightLast = preorder(right); // 递归展开右子树
             if (leftLast != null) { // 左子树不为空，要把右子树接到左子树后面
                 leftLast.right = right;
             }
             last = rightLast;
         }
+        return last;
     }
 }
 

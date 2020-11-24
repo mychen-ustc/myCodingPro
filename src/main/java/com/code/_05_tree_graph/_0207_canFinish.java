@@ -37,15 +37,50 @@
 
 package com.code._05_tree_graph;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Queue;
+
 class Solution_0207 {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-
+        int[] indegrees = new int[numCourses];
+        List<List<Integer>> adjacency = new ArrayList<>();
+        Queue<Integer> queue = new LinkedList<>();
+        // 初始化邻接表
+        for (int i = 0; i < numCourses; i++) {
+            adjacency.add(new ArrayList<>());
+        }
+        // 处理邻接关系
+        for (int[] pair : prerequisites) {
+            indegrees[pair[0]]++;   // 更新节点的入度
+            adjacency.get(pair[1]).add(pair[0]);    // 存储边
+        }
+        for (int i = 0; i < numCourses; i++) {
+            if (indegrees[i] == 0)  // 将入度为0的点添加到队列中
+                queue.add(i);
+        }
+        while (!queue.isEmpty()) {
+            int startNode = queue.poll();
+            numCourses -= 1;  // 减掉一门课程
+            List<Integer> endNodes = adjacency.get(startNode);
+            for (int i = 0; i < endNodes.size(); i++) {
+                int cur = endNodes.get(i);
+                indegrees[cur] -= 1;
+                if (indegrees[cur] == 0)
+                    queue.add(cur);
+            }
+        }
+        return numCourses == 0;
     }
 }
 
 public class _0207_canFinish {
     public static void main(String[] args) {
-        int numCourses = 2;
-        int prerequisites[][] = {{1, 0}, {0, 1}};
+        int numCourses = 3;
+        int prerequisites[][] = {{1, 0}, {2, 1}, {2, 0}};
+        Solution_0207 solution = new Solution_0207();
+        Boolean flag = solution.canFinish(numCourses, prerequisites);
+        System.out.println(flag);
     }
 }

@@ -35,24 +35,28 @@
  * // 输出: []
  * //
  * // 解释: endWord "cog" 不在字典中，所以不存在符合要求的转换序列。
- * //
- * // 来源：力扣（LeetCode）
- * // 链接：https://leetcode-cn.com/problems/word-ladder-ii
- * // 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 
 package com.code._8_search;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-class Solution {
+class Solution_0126 {
     public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
-
+        return null;
     }
 }
 
 public class _0126_findLadders_2 {
-    //"hit"
-    //"cog"
-    //["hot","dot","dog","lot","log","cog"]
+
+    public static void main(String[] args) {
+        Solution_0126 solution = new Solution_0126();
+        String beginWord = "hit";
+        String endWord = "cog";
+        List<String> list = new ArrayList<>(Arrays.asList("hot", "dot", "dog", "lot", "log", "cog"));
+        List<List<String>> result = solution.findLadders(beginWord, endWord, list);
+        System.out.println(result);
+    }
 }

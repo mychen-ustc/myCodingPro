@@ -25,10 +25,6 @@
  * 输出: 2
  * 进阶:
  * 你能否用 O(n) 时间复杂度完成此题?
- * <p>
- * 来源：力扣（LeetCode）
- * 链接：https://leetcode-cn.com/problems/wiggle-subsequence
- * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 
 package com.code._03_greedy;

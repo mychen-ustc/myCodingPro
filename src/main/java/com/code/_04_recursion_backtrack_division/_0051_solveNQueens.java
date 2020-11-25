@@ -34,10 +34,6 @@
  * 提示：
  * <p>
  * 皇后彼此不能相互攻击，也就是说：任何两个皇后都不能处于同一条横行、纵行或斜线上。
- * <p>
- * 来源：力扣（LeetCode）
- * 链接：https://leetcode-cn.com/problems/n-queens
- * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 
 package com.code._04_recursion_backtrack_division;

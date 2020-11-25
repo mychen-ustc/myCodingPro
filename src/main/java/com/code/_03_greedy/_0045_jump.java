@@ -18,10 +18,6 @@
  * <p>
  * 假设你总是可以到达数组的最后一个位置。
  * <p>
- * 来源：力扣（LeetCode）
- * 链接：https://leetcode-cn.com/problems/jump-game-ii
- * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
- * <p>
  * 思路：
  * 1.noJumpMaxIndex 如果不增加1次跳跃，能到达的最远的地方
  * 2.jumpMaxIndex 已遍历的位置中，通过增加跳跃能达到的最远的地方

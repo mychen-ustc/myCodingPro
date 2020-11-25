@@ -21,10 +21,6 @@
  // *    [5,4,11,2],
  // *    [5,8,4,5]
  // * ]
- // *
- // * 来源：力扣（LeetCode）
- // * 链接：https://leetcode-cn.com/problems/path-sum-ii
- // * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 
 package com.code._05_tree_graph;

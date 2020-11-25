@@ -43,10 +43,6 @@
  * 1 <= target, startFuel, stations[i][1] <= 10^9
  * 0 <= stations.length <= 500
  * 0 < stations[0][0] < stations[1][0] < ... < stations[stations.length-1][0] < target
- * <p>
- * 来源：力扣（LeetCode）
- * 链接：https://leetcode-cn.com/problems/minimum-number-of-refueling-stops
- * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 
 package com.code._03_greedy;

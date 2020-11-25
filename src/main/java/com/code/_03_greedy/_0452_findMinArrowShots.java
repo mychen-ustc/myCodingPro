@@ -38,10 +38,6 @@
  * points[i].length == 2
  * -2^31 <= xstart < xend <= 2^31 - 1
  * <p>
- * 来源：力扣（LeetCode）
- * 链接：https://leetcode-cn.com/problems/minimum-number-of-arrows-to-burst-balloons
- * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
- * <p>
  * 思路：
  * 1.对各个气球进行排序，按照气球的做断点从小到大排序
  * 2.遍历气球数组，同时维护一个射击区间，在满足可以将当前气球击穿的情况下，尽可能击穿更多的气球。

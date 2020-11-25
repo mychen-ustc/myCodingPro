@@ -30,10 +30,6 @@
  * 1 <= g.length <= 3 * 104
  * 0 <= s.length <= 3 * 104
  * 1 <= g[i], s[j] <= 231 - 1
- * <p>
- * 来源：力扣（LeetCode）
- * 链接：https://leetcode-cn.com/problems/assign-cookies
- * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 
 package com.code._03_greedy;

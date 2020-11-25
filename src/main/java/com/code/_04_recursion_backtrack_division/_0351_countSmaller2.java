@@ -22,10 +22,6 @@
  * 0 <= nums.length <= 10^5
  * -10^4 <= nums[i] <= 10^4
  * <p>
- * 来源：力扣（LeetCode）
- * 链接：https://leetcode-cn.com/problems/count-of-smaller-numbers-after-self
- * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
- * <p>
  * <p>
  * 思路：
  * 最暴力的方法，对每个元素扫描右侧壁它小的个数累加。算法复杂度0(N^2)

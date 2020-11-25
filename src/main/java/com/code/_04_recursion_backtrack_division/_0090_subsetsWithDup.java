@@ -19,11 +19,6 @@
  * []
  * ]
  * <p>
- * 来源：力扣（LeetCode）
- * 链接：https://leetcode-cn.com/problems/subsets-ii
- * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
- * <p>
- * <p>
  * <p>
  * 方法：回溯搜索算法 + 数组排序 + 同层剪枝
  * 思路：使用回溯算法遍历决策树，穷举所有解，决策树的每个节点维护当前已选路径track/path和选择列表等信息
@@ -36,11 +31,6 @@
  * 类似题目：t046-全排列、t077-组合、t078-子集（不包含重复元素）
  * 【t040-组合总和II】（数组元素可能有重复，每个元素仅能选一次）
  * 优化点：路径track/path可使用栈Stack，可方便使用压栈push()和出栈操作pop()。
- * <p>
- * 作者：OkkyDokky
- * 链接：https://leetcode-cn.com/problems/subsets-ii/solution/javahui-su-suan-fa-shu-zu-pai-xu-tong-ceng-jian-zh/
- * 来源：力扣（LeetCode）
- * 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
  */
 
 package com.code._04_recursion_backtrack_division;

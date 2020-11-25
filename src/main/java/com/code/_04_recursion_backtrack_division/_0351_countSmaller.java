@@ -22,10 +22,6 @@
  * 0 <= nums.length <= 10^5
  * -10^4 <= nums[i] <= 10^4
  * <p>
- * 来源：力扣（LeetCode）
- * 链接：https://leetcode-cn.com/problems/count-of-smaller-numbers-after-self
- * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
- * <p>
  * <p>
  * 思路：
  * 最暴力的方法，对每个元素扫描右侧壁它小的个数累加。算法复杂度0(N^2)
@@ -38,11 +34,6 @@
  * 但是在「归并」的过程中，元素的位置会发生变化，因此下一步需要思考如何定位元素；根据「索引堆」的学习经验，一个元素在算法的执行过程中位置发生变化，我们还想定位它，可以使用「索引数组」，技巧在于：「原始数组」不变，用于比较两个元素的大小，真正位置变化的是「索引数组」的位置；
  * 「索引数组」技巧建立了一个一一对应的关系，记录了当前操作的数对应的「原始数组」的下标，「索引数组」技巧想法的来源是「索引堆」（《算法（第 4 版）》第 2.4 节 练习）；
  * 「归并排序」还需要一个用于归并的辅助数组，这个时候拷贝的就是索引数组的值了。
- * <p>
- * 作者：liweiwei1419
- * 链接：https://leetcode-cn.com/problems/count-of-smaller-numbers-after-self/solution/gui-bing-pai-xu-suo-yin-shu-zu-python-dai-ma-java-/
- * 来源：力扣（LeetCode）
- * 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
  */
 
 package com.code._04_recursion_backtrack_division;

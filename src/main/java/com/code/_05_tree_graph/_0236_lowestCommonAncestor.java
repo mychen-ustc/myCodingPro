@@ -27,10 +27,6 @@
  * //
  * //所有节点的值都是唯一的。
  * //p、q 为不同节点且均存在于给定的二叉树中。
- * //
- * //来源：力扣（LeetCode）
- * //链接：https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree
- * //著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 
 /*
@@ -52,11 +48,6 @@
 //​ case 2 ： 其中有一个为空，返回非空的那一支。p、q都在这一支非空的上面
 //
 //​ case 3: 两个都为空，则返回空吧。就把这个分支放弃了
-//
-//作者：zxh1008610086
-//链接：https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/solution/shen-du-xiang-jie-zui-jin-gong-gong-zu-xian-qing-x/
-//来源：力扣（LeetCode）
-//著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
  */
 
 package com.code._05_tree_graph;

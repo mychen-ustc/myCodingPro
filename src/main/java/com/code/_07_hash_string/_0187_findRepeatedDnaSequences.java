@@ -30,17 +30,35 @@
 
 package com.code._07_hash_string;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 class Solution_0187 {
     public List<String> findRepeatedDnaSequences(String s) {
-
+        final int SUB_STR_LEN = 10;
+        List<String> result = new ArrayList<>();
+        Map<String, Integer> map = new HashMap<>();
+        for (int i = 0; i < s.length() - SUB_STR_LEN + 1; i++) {
+            String substr = s.substring(i, i + SUB_STR_LEN);    // 提取子串
+            if (map.containsKey(substr)) {
+                map.put(substr, map.get(substr) + 1);
+            } else {
+                map.put(substr, 1);
+            }
+        }
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            if (entry.getValue() > 1)
+                result.add(entry.getKey());
+        }
+        return result;
     }
 }
 
 public class _0187_findRepeatedDnaSequences {
     public static void main(String[] args) {
-        String str = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT";
+        String str = "AAAAAAAAAAA";
         Solution_0187 solution = new Solution_0187();
         List<String> result = solution.findRepeatedDnaSequences(str);
         System.out.println(result);

@@ -38,16 +38,77 @@
 
 package com.code._8_search;
 
-import java.util.List;
+import javafx.util.Pair;
 
-class Solution {
+import java.util.*;
+
+class Solution_0127 {
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        Map<String, List<String>> graph = buildGraph(beginWord, wordList);
+        return bfs(beginWord, endWord, graph);
+    }
 
+    // 判断两个字符串定点是否相邻
+    public boolean is_connected(String word1, String word2) {
+        int cnt = 0;    // 记录不相同的字符个数
+        for (int i = 0; i < word1.length(); i++) {
+            if (word1.charAt(i) != word2.charAt(i))
+                cnt++;
+        }
+        return cnt == 1;
+    }
+
+    //构建图
+    public Map<String, List<String>> buildGraph(String beginWord, List<String> wordList) {
+        wordList.add(beginWord);    // 把起点添加到单次列表中（起始单次可能不在列表中）
+        Map<String, List<String>> graph = new HashMap<>();
+        for (int i = 0; i < wordList.size(); i++) { // 初始化图
+            graph.put(wordList.get(i), new ArrayList<>());
+        }
+        for (int i = 0; i < wordList.size(); i++) {
+            for (int j = i + 1; j < wordList.size(); j++) {
+                if (is_connected(wordList.get(i), wordList.get(j))) {   // 两个词汇相邻，构建边
+                    graph.get(wordList.get(i)).add(wordList.get(j));
+                    graph.get(wordList.get(j)).add(wordList.get(i));
+                }
+            }
+        }
+        return graph;
+    }
+
+    // 遍历图，寻找路径，并返回最短路径长度
+    public int bfs(String beginWord, String endWord, Map<String, List<String>> graph) {
+        Queue<Pair<String, Integer>> queue = new LinkedList<>();    // 定义队列
+        Set<String> visit = new HashSet<>();    // 已访问的节点
+        queue.offer(new Pair<>(beginWord, 1));  // 将起点存入队列
+        visit.add(beginWord);   // 标记起始节点已访问
+        while (!queue.isEmpty()) {
+            Pair<String, Integer> pair = queue.poll();  // 取队头
+            String word = pair.getKey();
+            int step = pair.getValue();
+            if (word.equals(endWord)) {     // 找到终点，返回
+                return step;
+            }
+            List<String> neighbors = graph.get(word);   // 取节点的所有邻居
+            for (String str : neighbors) {
+                if (!visit.contains(str)) {
+                    queue.offer(new Pair(str, step + 1));   // 将未访问过的邻居存入队列
+                    visit.add(str);
+                }
+            }
+        }
+        return 0;
     }
 }
 
 public class _0127_ladderLength {
-    //"hit"
-    //"cog"
-    //["hot","dot","dog","lot","log","cog"]
+
+    public static void main(String[] args) {
+        String beginWord = "hit";
+        String endWord = "cog";
+        List<String> list = new ArrayList<>(Arrays.asList("hot", "dot", "dog", "lot", "log", "cog"));
+        Solution_0127 solution = new Solution_0127();
+        int minCnt = solution.ladderLength(beginWord, endWord, list);
+        System.out.println(minCnt);
+    }
 }

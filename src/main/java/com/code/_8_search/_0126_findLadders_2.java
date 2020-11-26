@@ -39,13 +39,109 @@
 
 package com.code._8_search;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+
+// 定义一个类，用于封装词汇、前驱、当前步数
+class Qitem {
+    String word;
+    int parentPos;
+    int step;
+
+    Qitem(String word, int parentPos, int step) {
+        this.word = word;
+        this.parentPos = parentPos;
+        this.step = step;
+    }
+}
 
 class Solution_0126 {
     public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
-        return null;
+        Map<String, List<String>> graph = buildGraph(beginWord, wordList);
+        List<Qitem> queue = new ArrayList<>();
+        List<Integer> endWordPos = new ArrayList<>();
+        bfs(beginWord, endWord, graph, queue, endWordPos);
+        List<List<String>> result = new ArrayList<>();
+        for (int i = 0; i < endWordPos.size(); i++) {
+            int pos = endWordPos.get(i);
+            List<String> backPath = new ArrayList<>();
+            while (pos != -1) {
+                Qitem item = queue.get(pos);
+                backPath.add(item.word);
+                pos = item.parentPos;
+            }
+            List<String> path = new ArrayList<>();
+            for (int j = backPath.size() - 1; j >= 0; j--) {
+                path.add(backPath.get(j));
+            }
+            result.add(path);
+        }
+        return result;
+    }
+
+    // 判断两个字符串定点是否相邻
+    public boolean is_connected(String word1, String word2) {
+        int cnt = 0;    // 记录不相同的字符个数
+        for (int i = 0; i < word1.length(); i++) {
+            if (word1.charAt(i) != word2.charAt(i))
+                cnt++;
+        }
+        return cnt == 1;
+    }
+
+    //构建图
+    public Map<String, List<String>> buildGraph(String beginWord, List<String> wordList) {
+        // 判断起点是否在词汇列表中
+        boolean begin_in_list = false;
+        for (String str : wordList) {
+            if (str.equals(beginWord))
+                begin_in_list = true;
+        }
+        if (!begin_in_list)
+            wordList.add(beginWord);
+        Map<String, List<String>> graph = new HashMap<>();
+        for (int i = 0; i < wordList.size(); i++) { // 初始化图
+            graph.put(wordList.get(i), new ArrayList<>());
+        }
+        for (int i = 0; i < wordList.size(); i++) {
+            for (int j = i + 1; j < wordList.size(); j++) {
+                if (is_connected(wordList.get(i), wordList.get(j))) {   // 两个词汇相邻，构建边
+                    graph.get(wordList.get(i)).add(wordList.get(j));
+                    graph.get(wordList.get(j)).add(wordList.get(i));
+                }
+            }
+        }
+        return graph;
+    }
+
+    // 遍历图，寻找并返回所有路径
+    public void bfs(String beginWord, String endWord, Map<String, List<String>> graph,
+                    List<Qitem> queue, List<Integer> endWordPos) {
+        List<List<String>> result = new ArrayList<>();  // 存储找到的结果
+        Map<String, Integer> visit = new HashMap<>();    // 已访问的节点
+        int minStep = 0;    // 到达word的最小步数
+        queue.add(new Qitem(beginWord, -1, 1));  // 将起点存入队列，起点的前驱为-1
+        visit.put(beginWord, 1);   // 标记起始节点已访问
+        int front = 0;  // 队头指针，指向queue的队头
+        while (front != queue.size()) {
+            Qitem item = queue.get(front);  // 取队头
+            String word = item.word;
+            int step = item.step;
+            if (minStep != 0 && step > minStep) {
+                break;  // step > minStep表示所有最短路径都已搜索完成
+            }
+            if (word.equals(endWord)) {     // 找到终点，返回
+                minStep = step;     // 搜素到结果时，记录最小步数
+                endWordPos.add(front);
+            }
+            List<String> neighbors = graph.get(word);   // 取节点的所有邻居
+            for (String str : neighbors) {
+                if (!visit.containsKey(str) || visit.get(str) == step + 1) {    // 节点没被访问，或者是另一条最短路径
+                    queue.add(new Qitem(str, front, step + 1));   // 将未访问过的邻居存入队列
+                    visit.put(str, step + 1);
+                }
+            }
+            front++;
+        }
     }
 }
 
@@ -55,7 +151,7 @@ public class _0126_findLadders_2 {
         Solution_0126 solution = new Solution_0126();
         String beginWord = "hit";
         String endWord = "cog";
-        List<String> list = new ArrayList<>(Arrays.asList("hot", "dot", "dog", "lot", "log", "cog"));
+        List<String> list = new ArrayList<>(Arrays.asList("hot", "dot", "dog", "lot", "log", "cog", "hit"));
         List<List<String>> result = solution.findLadders(beginWord, endWord, list);
         System.out.println(result);
     }

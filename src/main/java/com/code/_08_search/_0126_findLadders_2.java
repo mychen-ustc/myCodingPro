@@ -37,7 +37,7 @@
  * // 解释: endWord "cog" 不在字典中，所以不存在符合要求的转换序列。
  */
 
-package com.code._8_search;
+package com.code._08_search;
 
 import java.util.*;
 

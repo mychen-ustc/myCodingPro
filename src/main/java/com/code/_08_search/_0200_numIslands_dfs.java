@@ -38,14 +38,9 @@
  * // grid[i][j] 的值为 '0' 或 '1'
  */
 
-package com.code._8_search;
+package com.code._08_search;
 
-import javafx.util.Pair;
-
-import java.util.LinkedList;
-import java.util.Queue;
-
-class Solution_0200_bfs {
+class Solution_0200_dfs {
     public int numIslands(char[][] grid) {
         if (grid.length == 0)
             return 0;
@@ -54,7 +49,7 @@ class Solution_0200_bfs {
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[i].length; j++) {
                 if (mark[i][j] == 0 && grid[i][j] == '1') { // 如果位置没被搜索，且为陆地，则向四周搜索
-                    bfs(grid, mark, i, j);
+                    dfs(grid, mark, i, j);
                     numIsland++;
                 }
             }
@@ -62,35 +57,27 @@ class Solution_0200_bfs {
         return numIsland;
     }
 
-    public void bfs(char[][] grid, int[][] mark, int x, int y) {
+    public void dfs(char[][] grid, int[][] mark, int x, int y) {
         final int[] DX = {-1, 1, 0, 0};     // 方向数组的X坐标偏移量
         final int[] DY = {0, 0, -1, 1};     // 方向数组的Y坐标偏移量
         mark[x][y] = 1;     // 标记当前位置
-        Queue<Pair<Integer, Integer>> queue = new LinkedList<>();
-        queue.offer(new Pair<>(x, y));  // 将当前节点加入
-        while (!queue.isEmpty()) {
-            Pair<Integer, Integer> pair = queue.poll();   // 取队头
-            x = pair.getKey();
-            y = pair.getValue();
-            for (int i = 0; i < 4; i++) {   // 对队头节点向4个方向搜索
-                int newx = DX[i] + x;   // 新的x坐标
-                int newy = DY[i] + y;   // 新的y坐标
-                if (newx < 0 || newy < 0 || newx >= mark.length || newy >= mark[newx].length) {
-                    continue;   // 越过边界
-                }
-                if (mark[newx][newy] == 0 && grid[newx][newy] == '1') {
-                    queue.offer(new Pair<>(newx, newy));    // 将新的位置push到队列
-                    bfs(grid, mark, newx, newy);
-                }
+        for (int i = 0; i < 4; i++) {
+            int newx = DX[i] + x;   // 新的x坐标
+            int newy = DY[i] + y;   // 新的y坐标
+            if (newx < 0 || newy < 0 || newx >= mark.length || newy >= mark[newx].length) {
+                continue;   // 越过边界
+            }
+            if (mark[newx][newy] == 0 && grid[newx][newy] == '1') {
+                dfs(grid, mark, newx, newy);
             }
         }
     }
 }
 
-public class _0200_numIslands_bfs {
+public class _0200_numIslands_dfs {
     public static void main(String[] args) {
         char[][] grid = {{'1', '1', '1', '1', '0'}, {'1', '1', '0', '1', '0'}, {'1', '1', '0', '0', '0'}, {'0', '0', '0', '0', '0'}};
-        Solution_0200_bfs solution = new Solution_0200_bfs();
+        Solution_0200_dfs solution = new Solution_0200_dfs();
         int result = solution.numIslands(grid);
         System.out.println(result);
     }

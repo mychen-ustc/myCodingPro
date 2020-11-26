@@ -36,7 +36,7 @@
  * // 解释: endWord "cog" 不在字典中，所以无法进行转换。
  */
 
-package com.code._8_search;
+package com.code._08_search;
 
 import javafx.util.Pair;
 

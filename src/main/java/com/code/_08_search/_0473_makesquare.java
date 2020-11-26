@@ -26,14 +26,52 @@
 
 package com.code._08_search;
 
-class Solution {
-    public boolean makesquare(int[] nums) {
+import java.util.*;
 
+class Solution_0473 {
+    public boolean makesquare(int[] nums) {
+        if (nums.length < 4)
+            return false;
+        int sum = 0;    // 总和
+        for (int num : nums) {
+            sum += num;
+        }
+        if (sum % 4 != 0)
+            return false;
+        // 将数组排序：逆序
+        Arrays.sort(nums);
+        int[] numsTmp = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            numsTmp[nums.length - i - 1] = nums[i];
+        }
+
+        int[] sums = new int[4];    // 4个桶
+        // 进行搜索
+        return search(numsTmp, sums, 0, sum / 4);
+    }
+
+    public boolean search(int[] nums, int[] sums, int pos, int target) {
+        if (pos >= nums.length) {
+            return sums[0] == target && sums[1] == target && sums[2] == target && sums[3] == target;
+        }
+        for (int i = 0; i < 4; i++) {   // 依次对4个桶进行尝试
+            if (sums[i] + nums[pos] > target)   // 将当前木柴加入后超过target，不继续循环
+                continue;
+            sums[i] += nums[pos];   // 加入当前木柴
+            if (search(nums, sums, pos + 1, target))
+                return true;
+            sums[i] -= nums[pos];
+        }
+        return false;
     }
 }
 
 public class _0473_makesquare {
     public static void main(String[] args) {
-//        [1,1,2,2,2]
+        //[1,1,2,2,2]
+        int[] nums = {4, 3, 2, 1, 1, 2, 3, 4};
+        Solution_0473 solution = new Solution_0473();
+        boolean flag = solution.makesquare(nums);
+        System.out.println(flag);
     }
 }

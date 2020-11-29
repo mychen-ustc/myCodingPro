@@ -41,7 +41,7 @@ package com.code._04_recursion_backtrack_division;
 import java.util.ArrayList;
 import java.util.List;
 
-class Solution_0351 {
+class Solution_0315 {
     public List<Integer> countSmaller(int[] nums) {
         List<Integer> result = new ArrayList<>();
         int len = nums.length;
@@ -126,10 +126,10 @@ class Solution_0351 {
     }
 }
 
-public class _0351_countSmaller {
+public class _0315_countSmaller {
 
     public static void main(String[] args) {
-        Solution_0351 solution = new Solution_0351();
+        Solution_0315 solution = new Solution_0315();
         int nums[] = {5, -7, 9, 1, 3, 5, -2, 1};
         System.out.println(solution.countSmaller(nums));
     }

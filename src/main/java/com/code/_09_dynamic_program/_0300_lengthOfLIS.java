@@ -35,7 +35,7 @@
  * //  =max(dp[i]),其中0≤i<n
  */
 
-package com.code.list;
+package com.code._09_dynamic_program;
 
 class Solution_0300 {
     public int lengthOfLIS(int[] nums) {

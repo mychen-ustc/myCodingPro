@@ -25,6 +25,8 @@
  * //   第i行j列的最优值为dp[i][j],可达到(i,j)的两个位置的最优解dp[i+1][j]、dp[i+1][j+1]
  * //   dp[i][j] = min(dp[i+1][j], dp[i+1][j+1])+triangle[i][j]
  * // 3.返回dp[0][0]
+ * //
+ * // 如果在面试中遇到类似的题目，需要和面试官进行沟通，可以询问「是否有空间复杂度限制」「是否可以修改原数组」等问题，给出符合条件的算法。
  */
 package com.code._09_dynamic_program;
 
@@ -36,6 +38,7 @@ class Solution_0120 {
         if (triangle.size() == 0) return 0;
 
         // 定义和初始化动态规划数组dp：最优解三角形数组
+        // 动态规划数组可以优化空间消耗，即只用2行来记住当前行和下一行的数值。或者直接原地修改，不使用额外空间
         List<List<Integer>> dp = new ArrayList<>();
         for (int i = 0; i < triangle.size(); i++) {
             List<Integer> list = new ArrayList<>();

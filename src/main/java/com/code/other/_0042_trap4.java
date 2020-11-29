@@ -38,7 +38,7 @@
  * //     2.2.3 right = right + 1
  */
 
-package com.code.list;
+package com.code.other;
 
 class Solution_0042 {
     public int trap(int[] height) {

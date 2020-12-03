@@ -45,5 +45,11 @@
 
 package com.code.other;
 
+class Solution_0038 {
+    public String countAndSay(int n) {
+
+    }
+}
+
 public class _0038_countAndSay {
 }

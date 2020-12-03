@@ -38,7 +38,7 @@ class Solution_27_2 {
     public TreeNode mirrorTree(TreeNode root) {
         if (root == null)
             return null;
-        TreeNode left = root.left;
+        TreeNode left = root.left;  // 把left节点先暂存起来，因为后面会切断父节点与做子树的联系
         root.left = mirrorTree(root.right);     // 递归处理右子树，设置成父节点的左孩子
         root.right = mirrorTree(left);  // 递归处理左子树，设置成父节点的右孩子
         return root;

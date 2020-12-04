@@ -20,19 +20,38 @@
  * // 0 <= pushed[i], popped[i] < 1000
  * // pushed 是 popped 的排列。
  * // 注意：本题与主站 946 题相同：https://leetcode-cn.com/problems/validate-stack-sequences/
+ * //
+ * // 思路：
+ * // 给定一个压入序列 pushed 和弹出序列 popped ，则压入 / 弹出操作的顺序（即排列）是唯一确定的
+ * // 考虑借用一个辅助栈 stack ，模拟 压入 / 弹出操作的排列。根据是否模拟成功，即可得到结果。
  */
 
 package com.offer;
 
+import java.util.Stack;
+
 class Solution_31 {
     public boolean validateStackSequences(int[] pushed, int[] popped) {
-        return true;
+        Stack<Integer> stack = new Stack<>();   // 建立一个栈，用于模拟push/pop操作
+        int i = 0;  // 用于索引pop序列中的元素
+        for (int num : pushed) {
+            stack.push(num);    // 将push序列中的数字压栈
+            while (!stack.isEmpty() && stack.peek() == popped[i]) {     // 如果栈顶元素与pop序列匹配，就弹出
+                stack.pop();
+                i++;
+            }
+        }
+        return stack.isEmpty();
     }
 }
 
 public class _31_validateStackSequences {
     public static void main(String[] args) {
         // [1,2,3,4,5]
-        // [4,5,3,2,1]
+        // [4,5,3,2,1] --> true
+        int[] pushed = {1, 2, 3, 4, 5};
+        int[] popped = {4, 5, 3, 2, 1};
+        Solution_31 solution = new Solution_31();
+        System.out.println(solution.validateStackSequences(pushed, popped));
     }
 }

@@ -27,7 +27,7 @@ class MinStack_30 {
     /**
      * initialize your data structure here.
      */
-    public MinStack() {
+    public MinStack_30() {
 
     }
 
@@ -40,11 +40,11 @@ class MinStack_30 {
     }
 
     public int top() {
-
+        return 0;
     }
 
     public int min() {
-
+        return 0;
     }
 }
 

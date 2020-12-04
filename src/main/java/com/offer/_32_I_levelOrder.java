@@ -32,7 +32,7 @@ package com.offer;
  */
 class Solution_31_I {
     public int[] levelOrder(TreeNode root) {
-
+        return null;
     }
 }
 

@@ -26,7 +26,7 @@ package com.offer;
 
 class Solution_33 {
     public boolean verifyPostorder(int[] postorder) {
-
+        return true;
     }
 }
 

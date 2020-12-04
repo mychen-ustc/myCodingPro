@@ -26,7 +26,7 @@ package com.offer;
 
 class Solution_31 {
     public boolean validateStackSequences(int[] pushed, int[] popped) {
-
+        return true;
     }
 }
 

@@ -48,7 +48,7 @@ class Solution_38 {
             ans.add(path.toString());
             return;
         }
-        for (int i = 0; i < len; i++) {
+        for (int i = 0; i < len; i++) {     // 每一轮递归，需要寻找一个可用的数字
             if (!used[i]) {
                 if (i > 0 && chars[i] == chars[i - 1] && !used[i - 1]) {  // 首字符重复，会带来重复解，剪枝
                     continue;

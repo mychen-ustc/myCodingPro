@@ -50,7 +50,7 @@ class Solution_0046 {
             ans.add(new ArrayList<>(path));     // 添加到结果集
             return;
         }
-        for (int i = 0; i < len; i++) {
+        for (int i = 0; i < len; i++) {     // 每一轮递归，需要寻找一个可用的数字
             if (!used[i]) {
                 path.add(nums[i]);
                 used[i] = true;

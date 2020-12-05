@@ -7,6 +7,8 @@
 40. 组合总和 II : medium, 递归回溯
 42. 接雨水 : hard, 双指针
 45. 跳跃游戏 II : hard, 贪心
+46. 全排列 : medium，全排列，递归回溯
+47. 全排列 II : medium, 
 49. 字母异位词分组 : medium, 哈希
 50. Pow(x, n) : medium, 递归
 51. N 皇后 : hard, 递归回溯

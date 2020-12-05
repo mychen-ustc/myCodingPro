@@ -22,8 +22,8 @@
  * // 解释：给定的链表为空（空指针），因此返回 null。
  * //
  * // 提示：
- * // -10000 <= Node.val <= 10000
- * // Node.random 为空（null）或指向链表中的节点。
+ * // -10000 <= Node_35.val <= 10000
+ * // Node_35.random 为空（null）或指向链表中的节点。
  * // 节点数目不超过 1000 。
  * //
  * // 注意：本题与主站 138 题相同：https://leetcode-cn.com/problems/copy-list-with-random-pointer/
@@ -38,13 +38,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-// Definition for a Node.
-class Node {
+// Definition for a Node_35.
+class Node_35 {
     int val;
-    Node next;
-    Node random;
+    Node_35 next;
+    Node_35 random;
 
-    public Node(int val) {
+    public Node_35(int val) {
         this.val = val;
         this.next = null;
         this.random = null;
@@ -52,12 +52,12 @@ class Node {
 }
 
 class Solution_35 {
-    public Node copyRandomList(Node head) {
-        Node tmp = head;    // 用一个临时节点拷贝head
+    public Node_35 copyRandomList(Node_35 head) {
+        Node_35 tmp = head;    // 用一个临时节点拷贝head
         if (head == null) return null;
         // 定义链表，按顺序存储节点，便于索引节点，给random指针赋值。结点的next指向后一个节点即可
-        List<Node> newNodes = new ArrayList<>();
-        List<Node> oldNodes = new ArrayList<>();
+        List<Node_35> newNodes = new ArrayList<>();
+        List<Node_35> oldNodes = new ArrayList<>();
         // 定义hashmap，存储原始节点的hashcode和节点索引序号
         Map<Integer, Integer> map = new HashMap<>();
         // 定义一个数组，记录random的索引，索引的结点在newNodes链表中
@@ -65,7 +65,7 @@ class Solution_35 {
         // 第一次遍历：创建所有新结点
         int cnt = 0;
         while (tmp != null) {
-            Node node = new Node(tmp.val);
+            Node_35 node = new Node_35(tmp.val);
             newNodes.add(node); // 把新节点存储到链表中
             oldNodes.add(tmp);  // 把旧节点存储到链表中
             map.put(tmp.hashCode(), cnt);
@@ -74,7 +74,7 @@ class Solution_35 {
         }
         // 处理新节点的next和random指针
         for (int i = 0; i < newNodes.size(); i++) {
-            Node node = newNodes.get(i);
+            Node_35 node = newNodes.get(i);
             // 处理next指针
             if (i < newNodes.size() - 1) {
                 node.next = newNodes.get(i + 1);
@@ -82,7 +82,7 @@ class Solution_35 {
                 node.next = null;   // 这个赋值其实可以省略，因为节点next指针已被初始化为null
             }
             // 处理random指针
-            Node oldNode = oldNodes.get(i);     // 取旧节点
+            Node_35 oldNode = oldNodes.get(i);     // 取旧节点
             if (oldNode.random != null) {
                 int oldHashCode = oldNode.random.hashCode();
                 int index = map.get(oldHashCode);
@@ -96,11 +96,11 @@ class Solution_35 {
 public class _35_copyRandomList {
     public static void main(String[] args) {
         // [[7,null],[13,0],[11,4],[10,2],[1,0]]
-        Node a = new Node(7);
-        Node b = new Node(13);
-        Node c = new Node(11);
-        Node d = new Node(10);
-        Node e = new Node(1);
+        Node_35 a = new Node_35(7);
+        Node_35 b = new Node_35(13);
+        Node_35 c = new Node_35(11);
+        Node_35 d = new Node_35(10);
+        Node_35 e = new Node_35(1);
         a.next = b;
         b.next = c;
         b.random = a;
@@ -111,7 +111,7 @@ public class _35_copyRandomList {
         e.random = a;
 
         Solution_35 solution = new Solution_35();
-        Node ans = solution.copyRandomList(a);
+        Node_35 ans = solution.copyRandomList(a);
         System.out.println(ans);
     }
 }

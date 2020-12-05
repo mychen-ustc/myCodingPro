@@ -35,6 +35,15 @@ class Solution_0046 {
         return ans;
     }
 
+    /**
+     * 递归求解不重复的数字组合
+     *
+     * @param nums  输入的数字数组
+     * @param depth 递归深度
+     * @param used  状态数组
+     * @param ans   结果集
+     * @param path  当前组合
+     */
     void dfs(int[] nums, int depth, boolean[] used, List<List<Integer>> ans, List<Integer> path) {
         int len = nums.length;
         if (depth == len) {     // 搜索到一组解

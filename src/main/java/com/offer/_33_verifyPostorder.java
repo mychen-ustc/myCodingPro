@@ -53,7 +53,7 @@ class Solution_33 {
         while (postorder[p] > postorder[end])   // 遍历p指针后面的数字，如果全部大于根节点，指针会走到根节点处
             p++;
 
-        return p == end && recur(postorder, begin, p - 1) && recur(postorder, p, end);  //递归判断左右子树
+        return p == end && recur(postorder, begin, m - 1) && recur(postorder, m, end-1);  //递归判断左右子树
     }
 }
 

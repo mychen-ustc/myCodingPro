@@ -25,20 +25,20 @@ package com.offer;
 import java.util.ArrayList;
 import java.util.List;
 
-// Definition for a Node.
-class Node {
+// Definition for a Node_36.
+class Node_36 {
     public int val;
-    public Node left;
-    public Node right;
+    public Node_36 left;
+    public Node_36 right;
 
-    public Node() {
+    public Node_36() {
     }
 
-    public Node(int _val) {
+    public Node_36(int _val) {
         val = _val;
     }
 
-    public Node(int _val, Node _left, Node _right) {
+    public Node_36(int _val, Node_36 _left, Node_36 _right) {
         val = _val;
         left = _left;
         right = _right;
@@ -46,7 +46,7 @@ class Node {
 };
 
 class Solution_36 {
-    public Node treeToDoublyList(Node root) {
+    public Node_36 treeToDoublyList(Node_36 root) {
         if (root == null)
             return null;
         if (root.left == null && root.right == null) {
@@ -54,7 +54,7 @@ class Solution_36 {
             root.right = root;
             return root;
         }
-        List<Node> list = new ArrayList<>();     // 定义一个队列
+        List<Node_36> list = new ArrayList<>();     // 定义一个队列
         // 遍历二叉搜索树，将所有结点存储到列表中
         recur(root, list);
         // 单独设置头结点和尾结点的双向指针
@@ -70,7 +70,7 @@ class Solution_36 {
     }
 
     // 递归遍历二叉搜索树
-    public void recur(Node node, List<Node> list) {
+    public void recur(Node_36 node, List<Node_36> list) {
         if (node == null) return;
         recur(node.left, list);
         list.add(node);
@@ -80,22 +80,21 @@ class Solution_36 {
 
 public class _36_treeToDoublyList {
     public static void main(String[] args) {
-//        Node a = new Node(1);
-//        Node b = new Node(2);
-//        Node c = new Node(3);
-//        Node d = new Node(4);
-//        Node e = new Node(5);
+//        Node_36 a = new Node_36(1);
+//        Node_36 b = new Node_36(2);
+//        Node_36 c = new Node_36(3);
+//        Node_36 d = new Node_36(4);
+//        Node_36 e = new Node_36(5);
 //        d.left = b;
 //        d.right = e;
 //        b.left = a;
 //        b.right = c;
-//
 //        Solution_36 solution = new Solution_36();
-//        Node ans = solution.treeToDoublyList(d);
+//        Node_36 ans = solution.treeToDoublyList(d);
 //        System.out.println(ans);
 
-        Node a = new Node(1);
+        Node_36 a = new Node_36(1);
         Solution_36 solution = new Solution_36();
-        Node ans = solution.treeToDoublyList(a);
+        Node_36 ans = solution.treeToDoublyList(a);
     }
 }

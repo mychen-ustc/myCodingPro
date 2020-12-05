@@ -28,7 +28,7 @@ class Solution_40_2 {
         if (k == 0) { // 排除 0 的情况PriorityQueue
             return ans;
         }
-        PriorityQueue<Integer> queue = new PriorityQueue<>((x, y) -> x - y);
+        PriorityQueue<Integer> queue = new PriorityQueue<>((x, y) -> y - x);    // 大根堆
         for (int i = 0; i < k; ++i) {
             queue.offer(arr[i]);
         }
@@ -48,7 +48,7 @@ class Solution_40_2 {
 public class _40_getLeastNumbers_2 {
     public static void main(String[] args) {
         int[] nums = {4, 5, 1, 6, 2, 7, 3, 8};
-        Solution_40 solution = new Solution_40();
+        Solution_40_2 solution = new Solution_40_2();
         int[] ans = solution.getLeastNumbers(nums, 4);
         System.out.println(ans);
     }

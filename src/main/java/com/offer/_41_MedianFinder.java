@@ -61,7 +61,7 @@ class MedianFinder {
 
     public double findMedian() {
         // 如果个数为偶数，取两个堆顶的平均值；如果个数为偶数，取A堆顶即可。
-        return A.size() == B.size() ? (A.peek() + B.peek()) / 2 : A.peek();
+        return A.size() == B.size() ? (A.peek() + B.peek()) / 2.0 : A.peek();
     }
 }
 

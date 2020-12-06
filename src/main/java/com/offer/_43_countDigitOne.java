@@ -21,6 +21,7 @@ package com.offer;
 class Solution_43 {
     public int countDigitOne(int n) {
         int ans = 0;
+        // 定义变量的初值
         int digit = 1;
         int low = 0, cur = n % 10, high = n / 10;   // 分别表示低位、当前位、高位的数值
         while (high != 0 || cur != 0) {
@@ -31,6 +32,7 @@ class Solution_43 {
             } else {
                 ans += (high + 1) * digit;
             }
+            // 更新变量，在数字轴上看，只往高位平移
             low += cur * digit;
             cur = high % 10;
             high /= 10;

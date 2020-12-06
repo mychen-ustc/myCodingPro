@@ -45,9 +45,9 @@ class Solution_44 {
             n -= count;
             digit += 1;
             start *= 10;
-            count = digit * start * 9;
+            count = digit * start * 9;  // 计算当前位数，一共有多少个数位，如1位数有9个位（不算0），2位数有180个位
         }
-        long num = start + (n - 1) / digit; // 2 求目标数字是在哪个数中
+        long num = start + (n - 1) / digit; // 2 求目标数字是在哪个数中（从0开始计数，所以n-1）
         return String.valueOf(num).charAt((n - 1) % digit) - '0'; // 3 求数字
     }
 }
@@ -55,17 +55,6 @@ class Solution_44 {
 public class _44_findNthDigit {
     public static void main(String[] args) {
         Solution_44 solution = new Solution_44();
-        System.out.println(solution.findNthDigit(0));
-        System.out.println(solution.findNthDigit(1));
-        System.out.println(solution.findNthDigit(2));
-        System.out.println(solution.findNthDigit(3));
-        System.out.println(solution.findNthDigit(4));
-        System.out.println(solution.findNthDigit(5));
-        System.out.println(solution.findNthDigit(6));
-        System.out.println(solution.findNthDigit(7));
-        System.out.println(solution.findNthDigit(8));
-        System.out.println(solution.findNthDigit(9));
-        System.out.println(solution.findNthDigit(10));
-        System.out.println(solution.findNthDigit(11));
+        System.out.println(solution.findNthDigit(365));
     }
 }

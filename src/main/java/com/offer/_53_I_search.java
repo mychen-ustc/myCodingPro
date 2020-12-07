@@ -19,7 +19,7 @@
 
 package com.offer;
 
-class Solution_53 {
+class Solution_53_I {
     public int search(int[] nums, int target) {
         return 0;
     }

@@ -17,7 +17,7 @@
 
 package com.offer;
 
-class Solution_53 {
+class Solution_53_II {
     public int missingNumber(int[] nums) {
         return 0;
     }

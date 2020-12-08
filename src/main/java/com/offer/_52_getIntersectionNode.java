@@ -92,7 +92,7 @@ public class _52_getIntersectionNode {
         b2.next = c2;
         c2.next = x;
 
-        helper solution = new helper();
+        Solution_52 solution = new Solution_52();
         ListNode ans = solution.getIntersectionNode(a1, a2);
         System.out.println(ans.val);
     }

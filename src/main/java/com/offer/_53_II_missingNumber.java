@@ -19,12 +19,25 @@ package com.offer;
 
 class Solution_53_II {
     public int missingNumber(int[] nums) {
-        return 0;
+        // 缺失数字的左边数值严格等于序号，右边的数值不等于序号
+        int left = 0, right = nums.length - 1;
+        while (left <= right) {
+            int k = left + (right - left) / 2;
+            if (nums[k] == k) {
+                left = k + 1;
+            } else {
+                right = k - 1;
+            }
+        }
+        return left;
     }
 }
 
 public class _53_II_missingNumber {
     public static void main(String[] args) {
-
+        int[] nums = {0, 1, 2, 3, 4, 5, 6, 7, 9};
+        Solution_53_II solution = new Solution_53_II();
+        int ans = solution.missingNumber(nums);
+        System.out.println(ans);
     }
 }

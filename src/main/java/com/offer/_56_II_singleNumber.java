@@ -26,6 +26,6 @@ class Solution_56_II {
 
 public class _56_II_singleNumber {
     public static void main(String[] args) {
-
+        // [3,4,3,3]
     }
 }

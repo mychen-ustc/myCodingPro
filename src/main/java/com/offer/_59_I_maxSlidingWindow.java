@@ -26,7 +26,21 @@ package com.offer;
 
 class Solution_59_I {
     public int[] maxSlidingWindow(int[] nums, int k) {
-        return null;
+        if (nums.length == 0 || k == 0)
+            return new int[0];
+        int len = nums.length;
+        int[] ans = new int[len - k + 1];
+        for (int i = 0; i < len - k + 1; i++) { // 遍历滑动窗口
+            int j = i;
+            int max = nums[j];
+            while (j < i + k) {
+                if (nums[j] > max)
+                    max = nums[j];
+                j++;
+            }
+            ans[i] = max;
+        }
+        return ans;
     }
 }
 
@@ -34,5 +48,11 @@ public class _59_I_maxSlidingWindow {
     public static void main(String[] args) {
         // [1,3,-1,-3,5,3,6,7]
         // 3
+        int[] nums = {1, 3, -1, -3, 5, 3, 6, 7};
+        int k = 3;
+        Solution_59_I solution = new Solution_59_I();
+        int[] ans = solution.maxSlidingWindow(nums, k);
+        for (int num : ans)
+            System.out.println(num);
     }
 }

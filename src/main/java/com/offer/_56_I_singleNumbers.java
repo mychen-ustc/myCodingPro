@@ -57,7 +57,7 @@ class Solution_56_I {
     }
 }
 
-public class _56_I {
+public class _56_I_singleNumbers {
     public static void main(String[] args) {
         // [4,1,4,6]
         int[] nums = {4, 1, 4, 6};

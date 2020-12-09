@@ -26,4 +26,7 @@ class Solution_60 {
 }
 
 public class _60_dicesProbability {
+    public static void main(String[] args) {
+        // 1
+    }
 }

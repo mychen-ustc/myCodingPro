@@ -26,4 +26,7 @@ class Solution_61 {
 }
 
 public class _61_isStraight {
+    public static void main(String[] args) {
+        // [1,2,3,4,5]
+    }
 }

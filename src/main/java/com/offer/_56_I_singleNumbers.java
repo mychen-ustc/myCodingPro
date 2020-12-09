@@ -37,23 +37,23 @@ package com.offer;
 
 class Solution_56_I {
     public int[] singleNumbers(int[] nums) {
-        int ret = 0;
-        for (int n : nums) {    // 第一轮遍历：得到两个只出现一次的数字的异或值
-            ret ^= n;
+        int xorSum = 0;     // 存储按位异或的和
+        for (int num : nums) {
+            xorSum ^= num;   // 按位异或
         }
-        int div = 1;
-        while ((div & ret) == 0) {  // 找到第一个非0的位
-            div <<= 1;
+        int digit = 1;
+        while ((digit & xorSum) == 0) {     // 找到第一个非0位
+            digit <<= 1;    // 左移一位
         }
-        int a = 0, b = 0;
-        for (int n : nums) {    // 分2组做异或
-            if ((div & n) != 0) {
-                a ^= n;
+        int res1 = 0, res2 = 0;
+        for (int num : nums) {
+            if ((num & digit) != 0) {   // 按照digit位是否为0，将数组分为2部分，分别可求出两个只出现一次的数字
+                res1 ^= num;
             } else {
-                b ^= n;
+                res2 ^= num;
             }
         }
-        return new int[]{a, b};
+        return new int[]{res1, res2};
     }
 }
 

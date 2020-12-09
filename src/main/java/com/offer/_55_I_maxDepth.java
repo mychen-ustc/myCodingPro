@@ -20,6 +20,10 @@
 
 package com.offer;
 
+import javafx.util.Pair;
+
+import java.util.Stack;
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -31,12 +35,50 @@ package com.offer;
  */
 class Solution_55_I {
     public int maxDepth(TreeNode root) {
-        return 0;
+        // 解法1：用栈存储节点和层，效率较低
+//        if (root == null) {
+//            return 0;
+//        }
+//        int maxDepth = 0;
+//        Stack<Pair<TreeNode, Integer>> stack = new Stack<>();  // 定义栈，存储节点用于深度优先搜索，并保存节点深度
+//        stack.push(new Pair<>(root, 1));
+//        while (!stack.isEmpty()) {
+//            Pair pair = stack.pop();    // 取栈顶
+//            TreeNode node = (TreeNode) pair.getKey();
+//            int depth = (int) pair.getValue();
+//            if (node.left == null && node.right == null) {
+//                if (depth > maxDepth)
+//                    maxDepth = depth;
+//            } else {
+//                if (node.left != null)
+//                    stack.push(new Pair<>(node.left, depth + 1));
+//                if (node.right != null)
+//                    stack.push(new Pair<>(node.right, depth + 1));
+//            }
+//        }
+//        return maxDepth;
+
+        // 解法2：
+        if(root == null) return 0;
+        return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
     }
 }
 
 public class _55_I_maxDepth {
     public static void main(String[] args) {
         // [3,9,20,null,null,15,7]
+        TreeNode a = new TreeNode(3);
+        TreeNode b = new TreeNode(9);
+        TreeNode c = new TreeNode(20);
+        TreeNode d = new TreeNode(15);
+        TreeNode e = new TreeNode(7);
+        a.left = b;
+        a.right = c;
+        c.left = d;
+        c.right = e;
+        Solution_55_I solution = new Solution_55_I();
+        int ans = solution.maxDepth(a);
+        System.out.println(ans);
+
     }
 }

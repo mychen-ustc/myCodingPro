@@ -20,6 +20,7 @@
  * // 提示：
  * // 你可以假设 k 总是有效的，在输入数组不为空的情况下，1 ≤ k ≤ 输入数组的大小。
  * // 注意：本题与主站 239 题相同：https://leetcode-cn.com/problems/sliding-window-maximum/
+ * // 本题测试用例比主站少，难度是简单，暴力法可以通过。主站难度是困难，不能用暴力法。
  */
 
 package com.offer;

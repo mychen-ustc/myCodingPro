@@ -20,26 +20,50 @@
  * // 限制：
  * // 1 <= push_back,pop_front,max_value的总操作数 <= 10000
  * // 1 <= value <= 10^5
+ * //
+ * // 用辅助的双端队列维护一个单调递增序列。插入元素value时，从队尾依次弹出比value小的元素，知道遇到第一个比value大的。
+ * // 本算法基于问题的一个重要性质：当一个元素进入队列的时候，它前面所有比它小的元素就不会再对答案产生影响。
  */
 
 package com.offer;
 
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Queue;
+
 class MaxQueue {
+    Queue<Integer> q;
+    Deque<Integer> d;
 
     public MaxQueue() {
-
+        q = new LinkedList<Integer>();
+        d = new LinkedList<Integer>();
     }
 
     public int max_value() {
-        return 0;
+        if (d.isEmpty()) {
+            return -1;
+        }
+        return d.peekFirst();
     }
 
     public void push_back(int value) {
-
+        while (!d.isEmpty() && d.peekLast() < value) {
+            d.pollLast();
+        }
+        d.offerLast(value);
+        q.offer(value);
     }
 
     public int pop_front() {
-        return 0;
+        if (q.isEmpty()) {
+            return -1;
+        }
+        int ans = q.poll();
+        if (ans == d.peekFirst()) {
+            d.pollFirst();
+        }
+        return ans;
     }
 }
 

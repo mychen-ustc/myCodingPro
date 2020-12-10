@@ -19,7 +19,10 @@ package com.offer;
 
 class Solution_58_II {
     public String reverseLeftWords(String s, int n) {
-        return "";
+        if (n >= s.length() || n <= 0) return s;
+        StringBuilder sbuild = new StringBuilder();
+        sbuild.append(s.substring(n)).append(s.substring(0, n));
+        return sbuild.toString();
     }
 }
 
@@ -27,5 +30,8 @@ public class _58_II_reverseLeftWords {
     public static void main(String[] args) {
         // "abcdefg"
         // 2
+        Solution_58_II solution = new Solution_58_II();
+        String ans = solution.reverseLeftWords("abcdefg", 1);
+        System.out.println(ans);
     }
 }

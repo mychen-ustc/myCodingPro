@@ -30,12 +30,26 @@ package com.offer;
 
 class Solution_58_I {
     public String reverseWords(String s) {
-        return "";
+        if (s.length() == 0 || s.trim().isEmpty()) return "";
+        String[] strs = s.trim().split(" ");
+        int len = strs.length;
+        StringBuffer buffer = new StringBuffer();
+        for (int i = 0; i < len; i++) {
+            String tmp = strs[len - i - 1];
+            if (!tmp.trim().isEmpty()) {    // 忽略空格
+                buffer.append(strs[len - i - 1]);
+                buffer.append(" ");
+            }
+        }
+        return buffer.substring(0, buffer.length() - 1);
     }
 }
 
 public class _58_I_reverseWords {
     public static void main(String[] args) {
         // "the sky is blue"
+        Solution_58_I solution = new Solution_58_I();
+        String ans = solution.reverseWords("  ");
+        System.out.println(ans);
     }
 }

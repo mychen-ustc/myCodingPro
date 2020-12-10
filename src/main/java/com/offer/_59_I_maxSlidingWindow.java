@@ -20,13 +20,28 @@
  * // 提示：
  * // 你可以假设 k 总是有效的，在输入数组不为空的情况下，1 ≤ k ≤ 输入数组的大小。
  * // 注意：本题与主站 239 题相同：https://leetcode-cn.com/problems/sliding-window-maximum/
+ * // 本题测试用例比主站少，难度是简单，暴力法可以通过。主站难度是困难，不能用暴力法。
  */
 
 package com.offer;
 
 class Solution_59_I {
     public int[] maxSlidingWindow(int[] nums, int k) {
-        return null;
+        if (nums.length == 0 || k == 0)
+            return new int[0];
+        int len = nums.length;
+        int[] ans = new int[len - k + 1];
+        for (int i = 0; i < len - k + 1; i++) { // 遍历滑动窗口
+            int j = i;
+            int max = nums[j];
+            while (j < i + k) {
+                if (nums[j] > max)
+                    max = nums[j];
+                j++;
+            }
+            ans[i] = max;
+        }
+        return ans;
     }
 }
 
@@ -34,5 +49,11 @@ public class _59_I_maxSlidingWindow {
     public static void main(String[] args) {
         // [1,3,-1,-3,5,3,6,7]
         // 3
+        int[] nums = {1, 3, -1, -3, 5, 3, 6, 7};
+        int k = 3;
+        Solution_59_I solution = new Solution_59_I();
+        int[] ans = solution.maxSlidingWindow(nums, k);
+        for (int num : ans)
+            System.out.println(num);
     }
 }

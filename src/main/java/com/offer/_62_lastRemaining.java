@@ -22,12 +22,18 @@ package com.offer;
 
 class Solution_62 {
     public int lastRemaining(int n, int m) {
-        return 0;
+        int pos = 0;    // pos表示最终活下来的人的位置
+        for (int i = 2; i <= n; i++) {  // 从2个人开始递推到n个人
+            pos = (pos + m) % i;
+        }
+        return pos;
     }
 }
 
 public class _62_lastRemaining {
     public static void main(String[] args) {
-
+        Solution_62 solution = new Solution_62();
+        int ans = solution.lastRemaining(5, 3);
+        System.out.println(ans);
     }
 }

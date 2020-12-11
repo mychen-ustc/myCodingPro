@@ -19,12 +19,18 @@ package com.offer;
 
 class Solution_64 {
     public int sumNums(int n) {
-        return 0;
+        // sum(1+...+n) = n(n+1)/2
+        // 用递归实现，结束条件用逻辑运算符
+        boolean flag = n > 1 && (n += sumNums(n - 1)) > 0;
+        return n;
     }
 }
 
 public class _64_sumNums {
     public static void main(String[] args) {
         // 3
+        Solution_64 solution = new Solution_64();
+        int sum = solution.sumNums(5);
+        System.out.println(sum);
     }
 }

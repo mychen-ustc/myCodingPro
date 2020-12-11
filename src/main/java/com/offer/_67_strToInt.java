@@ -1,5 +1,6 @@
 /**
  * // 67. 把字符串转换成整数
+ * // 难度：中等
  * // 写一个函数 StrToInt，实现把字符串转换成整数这个功能。不能使用 atoi 或者其他类似的库函数。
  * //
  * // 首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。
@@ -51,7 +52,20 @@ package com.offer;
 
 class Solution_67 {
     public int strToInt(String str) {
-        return 0;
+        char[] VALID_CHARS = {'+', '-', '1', '2', '3', '4', '5', '6', '7', '8', '9'};   // 有效字符
+        int num = 0;
+        char flag = '+';    // 数字符号，默认为+
+        boolean valid = false;  // 当前数字是否合法，如果遇到第一个有效字符，将该状态置为true，之后遇到无效字符，置为false
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            if (!valid && (ch == '+' || ch == '-')) {   // 遇到正负号
+                valid = true;
+            } else if (str.charAt(i) - '0' >= 0 && str.charAt(i) - '0' <= 9) {  // 遇到数字
+                valid = true;
+            } else {
+
+            }
+        }
     }
 }
 

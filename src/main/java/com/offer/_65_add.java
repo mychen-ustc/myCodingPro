@@ -16,12 +16,22 @@ package com.offer;
 
 class Solution_65 {
     public int add(int a, int b) {
-        return 0;
+        // 无进位和 与 异或运算 规律相同，进位 和 与运算 规律相同（并需左移一位）
+        // s = a + b => s = n + c (n非进位和，c进位)
+        while (b != 0) {     // 用b记录进位，进位为0时结束
+            int c = (a & b) << 1;   // c=进位
+            a ^= b;     // a记录非进位和
+            b = c;  // b记录进位
+        }
+        return a;
     }
 }
 
 public class _65_add {
     public static void main(String[] args) {
         // 1 2
+        Solution_65 solution = new Solution_65();
+        int ans = solution.add(1, 3);
+        System.out.println(ans);
     }
 }

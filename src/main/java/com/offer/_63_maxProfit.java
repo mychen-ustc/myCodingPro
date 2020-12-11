@@ -24,12 +24,24 @@ package com.offer;
 
 class Solution_63 {
     public int maxProfit(int[] prices) {
-        return 0;
+        // 动态规划 dp[i]表示截止到当前时刻的子数组的最大利润
+        // 记录前i个时刻的最低价，记当前价格为price, dp[i]=max(dp[i-1],price-cost)，dp数组可以简化为一个变量
+        int minCost = Integer.MAX_VALUE;    // 记录最低成本
+        int profit = 0;  // 记录最大利润 代替dp数组
+        for (int price : prices) {
+            minCost = Math.min(minCost, price);     // 更新最低成本
+            profit = Math.max(profit, price - minCost);  // 更新当前子数组的最大利润
+        }
+        return profit;
     }
 }
 
 public class _63_maxProfit {
     public static void main(String[] args) {
         // [7,1,5,3,6,4]
+        int[] prices = {7, 1, 5, 3, 6, 4};
+        Solution_63 solution = new Solution_63();
+        int ans = solution.maxProfit(prices);
+        System.out.println(ans);
     }
 }

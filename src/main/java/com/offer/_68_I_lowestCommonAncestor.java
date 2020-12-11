@@ -36,7 +36,26 @@ package com.offer;
  */
 class Solution_68_I {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        return null;
+        // 循环判断
+//        while (root != null) {
+//            if (p.val < root.val && q.val < root.val) {     // 都在左子树
+//                root = root.left;
+//            } else if (p.val > root.val && q.val > root.val) {      // 都在右子树
+//                root = root.right;
+//            } else {    // 分别在左右子树，当前节点就是祖先
+//                return root;
+//            }
+//        }
+//        return root;
+
+        // 递归判断
+        if (p.val < root.val && q.val < root.val) {
+            return lowestCommonAncestor(root.left, p, q);   // 左子树
+        } else if (p.val > root.val && q.val > root.val) {
+            return lowestCommonAncestor(root.right, p, q);  // 右子树
+        } else {
+            return root;
+        }
     }
 }
 

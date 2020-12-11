@@ -37,7 +37,27 @@ package com.offer;
  */
 class Solution_68_II {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        return null;
+        if (root == null || root == q || root == q) {   // 越过叶子节点需返回。其中一个节点是另一个节点的祖先，也返回
+            return root;
+        }
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        if (left == null && right == null) {    // root的左右子树都不包含p,q
+            return null;
+        }
+        if (left != null && right != null) {    // p/q在root两侧，则root就是最近公共祖先
+            return root;
+        }
+        return left == null ? right : left;     // left为空right不为空，p,q都不在左子树中。反之。。。
+
+
+        // 更简洁的写法：思路相同
+//        if(root == null || root == p || root == q) return root;
+//        TreeNode left = lowestCommonAncestor(root.left, p, q);
+//        TreeNode right = lowestCommonAncestor(root.right, p, q);
+//        if(left == null) return right;
+//        if(right == null) return left;
+//        return root;
     }
 }
 

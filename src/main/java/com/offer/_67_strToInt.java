@@ -52,25 +52,38 @@ package com.offer;
 
 class Solution_67 {
     public int strToInt(String str) {
-        char[] VALID_CHARS = {'+', '-', '1', '2', '3', '4', '5', '6', '7', '8', '9'};   // 有效字符
-        int num = 0;
-        char flag = '+';    // 数字符号，默认为+
-        boolean valid = false;  // 当前数字是否合法，如果遇到第一个有效字符，将该状态置为true，之后遇到无效字符，置为false
-        for (int i = 0; i < str.length(); i++) {
-            char ch = str.charAt(i);
-            if (!valid && (ch == '+' || ch == '-')) {   // 遇到正负号
-                valid = true;
-            } else if (str.charAt(i) - '0' >= 0 && str.charAt(i) - '0' <= 9) {  // 遇到数字
-                valid = true;
-            } else {
-
-            }
+        if (str.length() == 0) return 0;
+        // 跳过前导的空格(不用trim，trim会创建新字符串，空间复杂度O(n))
+        int i = 0;
+        int ans = 0;
+        int flag = 1;   // 符号
+        int boundary = Integer.MAX_VALUE / 10;  // 整数越界的边界（在MAX_INT/10的时候就要判断，提前处理越界）
+        while (str.charAt(i) == ' ') {
+            if (++i == str.length()) return 0;  // 边界条件
         }
+        if (str.charAt(i) == '+') {
+            i++;
+        } else if (str.charAt(i) == '-') {
+            i++;
+            flag = -1;     // 数字的符号为符号
+        } else if (str.charAt(i) > '9' || str.charAt(i) < '0') {    // 第一个非空字符不是数字或者正负号
+            return 0;   // 不能构成数字，直接返回
+        }
+        while (i < str.length() && str.charAt(i) <= '9' && str.charAt(i) >= '0') {    // i此时指向第一个数字
+            if (ans > boundary || (ans == 214748364 && str.charAt(i) > '7'))   // MAX_INT=2147483647
+                return flag > 0 ? Integer.MAX_VALUE : Integer.MIN_VALUE;    // 越界，直接返回整数边界
+            ans = ans * 10 + (str.charAt(i) - '0');
+            i++;
+        }
+        return flag * ans;
     }
 }
 
 public class _67_strToInt {
     public static void main(String[] args) {
         // "42"
+        Solution_67 solution = new Solution_67();
+        int ans = solution.strToInt("  ");
+        System.out.println(ans);
     }
 }

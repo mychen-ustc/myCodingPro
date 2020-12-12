@@ -35,32 +35,49 @@
 
 package com.code.main._401_500;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 class Solution_0406 {
     public int[][] reconstructQueue(int[][] people) {
-        Arrays.sort(people, (p1, p2) -> {   // 将输入数组排序：优先按身高升序，身高相同时按Ki逆序
+        // 解法1：将输入数组排序：优先按身高升序，身高相同时按Ki逆序: 从左到右放入第ki+1个空位置
+//        Arrays.sort(people, (p1, p2) -> {
+//            if (p1[0] != p2[0]) {   // 如果身高不相同，按身高升序排列: 优先选取身高较小的人
+//                return p1[0] - p2[0];
+//            } else {
+//                return p2[1] - p1[1];   // 如果身高相同，按ki逆序排列: 优先选取ki较小的人
+//            }
+//        });
+//        int n = people.length;
+//        int[][] ans = new int[n][];
+//        for (int[] peo : people) {
+//            int spaces = peo[1] + 1;    // 要放入第几个空位
+//            for (int i = 0; i < n; i++) {
+//                if (ans[i] == null) {
+//                    spaces--;
+//                    if (spaces == 0) {
+//                        ans[i] = peo;   // 将人放入对应的空位
+//                        break;
+//                    }
+//                }
+//            }
+//        }
+//        return ans;
+
+        // 解法2：将输入数组排序：优先按身高逆序，身高相同时按Ki升序。性能优于解法1
+        Arrays.sort(people, (p1, p2) -> {
             if (p1[0] != p2[0]) {   // 如果身高不相同，按身高升序排列: 优先选取身高较小的人
-                return p1[0] - p2[0];
+                return p2[0] - p1[0];
             } else {
-                return p2[1] - p1[1];   // 如果身高相同，按ki逆序排列: 优先选取ki较小的人
+                return p1[1] - p2[1];   // 如果身高相同，按ki逆序排列: 优先选取ki较小的人
             }
         });
-        int n = people.length;
-        int[][] ans = new int[n][];
+        List<int[]> ans = new ArrayList<>();
         for (int[] peo : people) {
-            int spaces = peo[1] + 1;    // 要放入第几个空位
-            for (int i = 0; i < n; i++) {
-                if (ans[i] == null) {
-                    spaces--;
-                    if (spaces == 0) {
-                        ans[i] = peo;   // 将人放入对应的空位
-                        break;
-                    }
-                }
-            }
+            ans.add(peo[1], peo);   // 插队，插到第ki个位置。排序规则决定了插进去不会对前后的人有影响
         }
-        return ans;
+        return ans.toArray(new int[ans.size()][]);
     }
 }
 

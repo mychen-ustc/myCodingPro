@@ -29,7 +29,7 @@
  * // 1 <= k <= nums.length
  */
 
-package com.code;
+package com.code.main._201_300;
 
 class Solution_0239 {
     public int[] maxSlidingWindow(int[] nums, int k) {

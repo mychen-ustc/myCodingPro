@@ -52,9 +52,56 @@ import java.util.List;
  */
 class Solution_0094 {
     public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> ans = new ArrayList<>();
-        recur(root, ans);
-        return ans;
+        // 解法1: DFS遍历
+//        List<Integer> ans = new ArrayList<>();
+//        recur(root, ans);
+//        return ans;
+
+        // 解法2: 迭代
+//        List<Integer> ans = new ArrayList<>();
+//        Stack<TreeNode> stack = new Stack<>();
+//        while (root != null || !stack.isEmpty()) {
+//            while (root != null) {  // DFS处理左子树
+//                stack.push(root);
+//                root = root.left;
+//            }
+//            root = stack.pop();
+//            ans.add(root.val);
+//            root = root.right;  // 处理右子树
+//        }
+//        return ans;
+
+        // 解法3: Morris中序遍历(参考图_0094.png)
+        List<Integer> res = new ArrayList<Integer>();
+        TreeNode predecessor = null;
+
+        while (root != null) {
+            if (root.left != null) {
+                // predecessor 节点就是当前 root 节点向左走一步，然后一直向右走至无法走为止
+                predecessor = root.left;
+                while (predecessor.right != null && predecessor.right != root) {
+                    predecessor = predecessor.right;
+                }
+
+                // 让 predecessor 的右指针指向 root，继续遍历左子树
+                if (predecessor.right == null) {
+                    predecessor.right = root;
+                    root = root.left;
+                }
+                // 说明左子树已经访问完了，我们需要断开链接
+                else {
+                    res.add(root.val);
+                    predecessor.right = null;
+                    root = root.right;
+                }
+            }
+            // 如果没有左孩子，则直接访问右孩子
+            else {
+                res.add(root.val);
+                root = root.right;
+            }
+        }
+        return res;
     }
 
     // 递归DFS遍历子树
@@ -71,8 +118,14 @@ public class _0094_inorderTraversal {
         TreeNode a = new TreeNode(1);
         TreeNode b = new TreeNode(2);
         TreeNode c = new TreeNode(3);
-        a.right = b;
-        b.left = c;
+        TreeNode d = new TreeNode(4);
+        TreeNode e = new TreeNode(5);
+        TreeNode f = new TreeNode(6);
+        a.left = b;
+        a.right = c;
+        b.left = d;
+        b.right = e;
+        c.left = f;
         Solution_0094 solution = new Solution_0094();
         List<Integer> ans = solution.inorderTraversal(a);
         System.out.println(ans);

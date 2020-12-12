@@ -58,7 +58,8 @@ class Solution_1497 {
                     return false;
                 }
             } else {
-                // ***** 不能直接get后就比较，因为get出来的是Integer，是个对象，-128~127在内存中有缓存，会指向同一个地址，但是其他的值有可能指向不同的地址。
+                // ***** [自动装箱拆箱的坑] 不能直接get后就比较，因为get出来的是Integer，是个对象。
+                // -128~127在内存中有缓存，会指向同一个地址，但是其他的值有可能指向不同的地址。
                 // 所以务必要用IntValue拆箱之后再比较
                 if (map.get(key).intValue() != map.getOrDefault(k - key, 0).intValue()) {     // key和k-key的值必须相同
                     return false;

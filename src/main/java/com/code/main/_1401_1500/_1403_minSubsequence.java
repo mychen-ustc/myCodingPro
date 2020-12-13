@@ -40,17 +40,16 @@ class Solution_1403 {
         // 贪心：从大到小选择
         int totalSum = 0;   // 所有数字的总和
         int selectSum = 0;  // 已选择的数字的总和
-        Integer[] arrCopy = new Integer[nums.length];
         // 预处理
         for (int i = 0; i < nums.length; i++) {
             int num = nums[i];
             totalSum += num;    // 计算总和
-            arrCopy[i] = num;   // 拷贝元素
         }
         // 处理入选数字
         List<Integer> ans = new ArrayList<>();
-        Arrays.sort(arrCopy, (a, b) -> (b - a));   // 将拷贝数组排序
-        for (int num : arrCopy) {
+        Arrays.sort(nums);   // 将拷贝数组排序
+        for (int i = nums.length - 1; i >= 0; i--) {    // 逆序遍历数组，保证从大到小
+            int num = nums[i];
             if (selectSum <= totalSum - selectSum) {
                 selectSum += num;
                 ans.add(num);
@@ -58,7 +57,6 @@ class Solution_1403 {
                 break;
             }
         }
-
         return ans;
     }
 }

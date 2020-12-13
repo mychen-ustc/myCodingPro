@@ -60,7 +60,7 @@ class Solution_1338 {
         int cnt = 0;
         for (Map.Entry<Integer, Integer> entry : list) {
             if (cnt >= arr.length / 2) {
-                return ans;
+                break;
             }
             cnt += entry.getValue();
             ans++;

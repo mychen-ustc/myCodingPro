@@ -41,7 +41,7 @@ package com.code.main._0_100;
 
 class Solution_0004 {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        // 双指针：O(m+n). 时间能击败100%用户。性能没达到hard的要求，但是容易掌握，效率较高
+        // 双指针：O(m+n). 时间能击败100%用户。性能没达到hard的要求，但是容易掌握，效率较高，先只掌握到这个程度。
         // 要达到o(log(m+n))则需要用二分查找
         int m = nums1.length, n = nums2.length;
         int midIndex = (m + n) / 2;     // 中间值索引

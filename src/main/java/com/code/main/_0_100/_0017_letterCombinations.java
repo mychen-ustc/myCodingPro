@@ -15,11 +15,45 @@
 
 package com.code.main._0_100;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 class Solution_0017 {
     public List<String> letterCombinations(String digits) {
-        return null;
+        // 思路：递归回溯
+        if (digits.length() == 0) return new ArrayList<>();
+        List<String> ans = new ArrayList<>();
+        Map<Character, String> map = new HashMap<Character, String>() {{    // 创建映射
+            put('2', "abc");
+            put('3', "def");
+            put('4', "ghi");
+            put('5', "jkl");
+            put('6', "mno");
+            put('7', "pqrs");
+            put('8', "tuv");
+            put('9', "wxyz");
+        }};
+
+        backtrace(digits, 0, ans, new StringBuffer(), map);
+        return ans;
+    }
+
+    // 回溯处理后续字符
+    public void backtrace(String digits, int index, List<String> combinations, StringBuffer combination, Map<Character, String> map) {
+        if (combination.length() == digits.length()) {  // 找到一种组合
+            combinations.add(combination.toString());
+            return;
+        }
+        char digit = digits.charAt(index);  // 当前的输入字符
+        char[] chars = map.get(digit).toCharArray();  // 获取字符对应的字母映射
+        for (int i = 0; i < chars.length; i++) {    // 遍历字母映射
+            char ch = chars[i];
+            combination.append(ch);     // 追加字母
+            backtrace(digits, index + 1, combinations, combination, map);   // 处理后续字符
+            combination.deleteCharAt(combination.length() - 1);     // 删除最后一个字母，回溯
+        }
     }
 }
 
@@ -27,5 +61,16 @@ public class _0017_letterCombinations {
     public static void main(String[] args) {
         // 输入："23"
         // 输出：["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
+        Solution_0017 solution = new Solution_0017();
+        System.out.println(solution.letterCombinations("2"));
+        System.out.println(solution.letterCombinations("3"));
+        System.out.println(solution.letterCombinations("4"));
+        System.out.println(solution.letterCombinations("5"));
+        System.out.println(solution.letterCombinations("6"));
+        System.out.println(solution.letterCombinations("7"));
+        System.out.println(solution.letterCombinations("8"));
+        System.out.println(solution.letterCombinations("9"));
+        System.out.println(solution.letterCombinations("23"));
+        System.out.println(solution.letterCombinations("234"));
     }
 }

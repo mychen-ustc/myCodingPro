@@ -32,14 +32,39 @@
 
 package com.code.main._0_100;
 
+import java.util.Stack;
+
 class Solution_0020 {
     public boolean isValid(String s) {
-        return true;
+        // 用栈进行匹配，如果遇到左括号就入栈，遇到右括号弹出栈顶进行比较
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            if (ch == '(' || ch == '[' || ch == '{') {   // 左括号入栈
+                stack.push(ch);
+            } else {    // 右括号
+                if (stack.isEmpty()) return false;  // 没有左括号进行匹配
+                char top = stack.pop();     // 弹出栈顶
+                if (!((ch == ')' && top == '(') || (ch == ']' && top == '[') || (ch == '}' && top == '{')))
+                    return false;   // 不能匹配，返回false
+            }
+        }
+        return stack.isEmpty();     // 如果栈为空，则全部匹配成功。否则还有未匹配的左括号
     }
 }
 
 public class _0020_isValid {
     public static void main(String[] args) {
         // ()[]{}
+        Solution_0020 solution = new Solution_0020();
+        System.out.println(solution.isValid("()"));
+        System.out.println(solution.isValid("(){}"));
+        System.out.println(solution.isValid("()[]{}"));
+        System.out.println(solution.isValid("(}"));
+        System.out.println(solution.isValid("({})"));
+        System.out.println(solution.isValid("{()}"));
+        System.out.println(solution.isValid("{[()]}"));
+        System.out.println(solution.isValid("{[(])]}"));
+        System.out.println(solution.isValid("]"));
     }
 }

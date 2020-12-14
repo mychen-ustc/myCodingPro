@@ -77,8 +77,9 @@ public class _0031_nextPermutation {
     public static void main(String[] args) {
         // [1,2,3]
 //        int[] nums = {6, 5, 4, 3, 2, 1};
-        int[] nums = {6, 5, 2, 3, 4, 1};
+//        int[] nums = {6, 5, 2, 3, 4, 1};
 //        int[] nums = {1, 3, 2};
+        int[] nums = {4, 5, 2, 6, 3, 1};
         for (int num : nums)
             System.out.print(num + " ");
         Solution_0031 solution = new Solution_0031();

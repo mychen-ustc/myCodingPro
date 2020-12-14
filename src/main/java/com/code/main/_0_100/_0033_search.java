@@ -31,12 +31,39 @@ package com.code.main._0_100;
 
 class Solution_0033 {
     public int search(int[] nums, int target) {
-        return 0;
+        int len = nums.length;
+        if (len == 0) return -1;    // 边界条件
+        if (len == 1) return nums[0] == target ? 0 : -1;    // 边界条件
+        int left = 0, right = len - 1;
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            if (nums[mid] == target)
+                return mid;
+            if (nums[0] <= nums[mid]) {     // mid左侧有序
+                if (nums[0] <= target && target <= nums[mid]) { // 检查target是否在左侧有序区间内
+                    right = mid - 1;
+                } else {
+                    left = mid + 1;
+                }
+            } else {    // mid右侧有序
+                if (nums[mid] < target && target <= nums[right]) {  // 检查target是否在右侧有序区间内
+                    left = mid + 1;
+                } else {
+                    right = mid - 1;
+                }
+            }
+        }
+        return -1;
     }
 }
 
 public class _0033_search {
     public static void main(String[] args) {
         // [4,5,6,7,0,1,2] 0
+        int[] nums = {4, 5, 6, 7, 0, 1, 2};
+        int target = 0;
+        Solution_0033 solution = new Solution_0033();
+        int ans = solution.search(nums, target);
+        System.out.println(ans);
     }
 }

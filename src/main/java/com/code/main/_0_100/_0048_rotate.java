@@ -45,12 +45,38 @@ package com.code.main._0_100;
 
 class Solution_0048 {
     public void rotate(int[][] matrix) {
-
+        // 先将矩阵转置，然后反转每一行
+        int n = matrix.length;
+        // 转置
+        for (int i = 0; i < n; i++) {
+            for (int j = i; j < n; j++) {   // j只需要处理对角线右边的
+                int tmp = matrix[j][i];
+                matrix[j][i] = matrix[i][j];
+                matrix[i][j] = tmp;
+            }
+        }
+        // 反转每一行
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n / 2; j++) {   // j只需要处理一半
+                int tmp = matrix[i][n - j - 1];
+                matrix[i][n - j - 1] = matrix[i][j];
+                matrix[i][j] = tmp;
+            }
+        }
     }
 }
 
 public class _0048_rotate {
     public static void main(String[] args) {
         // [[1,2,3],[4,5,6],[7,8,9]]
+        int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        Solution_0048 solution = new Solution_0048();
+        solution.rotate(matrix);
+        for (int[] row : matrix) {
+            for (int num : row) {
+                System.out.print(" " + num);
+            }
+            System.out.println();
+        }
     }
 }

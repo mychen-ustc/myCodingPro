@@ -22,8 +22,6 @@
 
 package com.code.main._0_100;
 
-import javafx.util.Pair;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -40,26 +38,53 @@ import java.util.Queue;
  */
 class Solution_0102 {
     public List<List<Integer>> levelOrder(TreeNode root) {
-        // 用一个队列实现宽度优先搜索，即得到层序遍历结果
-        List<List<Integer>> ans = new ArrayList<>();
-        if (root == null) return ans;
-        Queue<Pair<TreeNode, Integer>> queue = new LinkedList<>();  // 存储节点和层
-        queue.add(new Pair<>(root, 0));    // 将根节点添加到队列中
-        ans.add(new ArrayList<>());     // 添加第0层的列表
-        int curDepth = 0;  // 记录上一次处理的层
-        while (!queue.isEmpty()) {
-            Pair<TreeNode, Integer> pair = queue.poll();
-            TreeNode node = pair.getKey();
-            int depth = pair.getValue();
-            if (depth > curDepth) {   // 如果当前层还没有处理过，先新增一个列表
-                ans.add(new ArrayList<>());
-                curDepth = depth;  // 更新当前处理的层
-            }
-            ans.get(depth).add(node.val);   // 添加当前节点的值到对应的列表中
-            if (node.left != null) queue.add(new Pair<>(node.left, depth + 1));
-            if (node.right != null) queue.add(new Pair<>(node.right, depth + 1));
+//        // 用一个队列实现宽度优先搜索，即得到层序遍历结果
+//        List<List<Integer>> ans = new ArrayList<>();
+//        if (root == null) return ans;
+//        Queue<Pair<TreeNode, Integer>> queue = new LinkedList<>();  // 存储节点和层
+//        queue.add(new Pair<>(root, 0));    // 将根节点添加到队列中
+//        ans.add(new ArrayList<>());     // 添加第0层的列表
+//        int curDepth = 0;  // 记录上一次处理的层
+//        while (!queue.isEmpty()) {
+//            Pair<TreeNode, Integer> pair = queue.poll();
+//            TreeNode node = pair.getKey();
+//            int depth = pair.getValue();
+//            if (depth > curDepth) {   // 如果当前层还没有处理过，先新增一个列表
+//                ans.add(new ArrayList<>());
+//                curDepth = depth;  // 更新当前处理的层
+//            }
+//            ans.get(depth).add(node.val);   // 添加当前节点的值到对应的列表中
+//            if (node.left != null) queue.add(new Pair<>(node.left, depth + 1));
+//            if (node.right != null) queue.add(new Pair<>(node.right, depth + 1));
+//        }
+//        return ans;
+
+
+        // 参考：性能高很多 93% vs 15%(1ms vs 2ms)
+        List<List<Integer>> ret = new ArrayList<>();
+        if (root == null) {
+            return ret;
         }
-        return ans;
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            List<Integer> level = new ArrayList<>();
+            int currentLevelSize = queue.size();
+            for (int i = 1; i <= currentLevelSize; i++) {
+                TreeNode node = queue.poll();
+                level.add(node.val);
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+            ret.add(level);
+        }
+
+        return ret;
     }
 }
 

@@ -36,21 +36,23 @@ package com.code.main._0_100;
 
 class Solution_0075 {
     public void sortColors(int[] nums) {
-        // 用2个指针p0和p2维护0/2的位置
+        // 用2个指针p0和p2维护0/2的位置,p0用于将0换到左边，p2用于将2换到右边，中间自然就是1
         int len = nums.length;
         int p0 = 0, p2 = len - 1;
+        while (p2 >= 0 && nums[p2] == 2) p2--;
+        while (p0 <= len - 1 && nums[p0] == 0) p0++;
         for (int i = 0; i <= p2; i++) {
-            if (nums[i] == 0 && i >= p0) {    // 找到1个0，交换
-                int tmp = nums[i];
-                nums[i] = nums[p0];
-                nums[p0] = tmp;
-                p0++;
-            }
-            if (nums[i] == 2 && i <= p2) {
+            while (i <= p2 && nums[i] == 2) {    // 将2换到右边
                 int tmp = nums[i];
                 nums[i] = nums[p2];
                 nums[p2] = tmp;
                 p2--;
+            }
+            if (nums[i] == 0) {
+                int tmp = nums[i];
+                nums[i] = nums[p0];
+                nums[p0] = tmp;
+                p0++;
             }
         }
     }
@@ -59,7 +61,8 @@ class Solution_0075 {
 public class _0075_sortColors {
     public static void main(String[] args) {
 //        [2,0,2,1,1,0]
-        int[] nums = {2, 1, 0, 0, 1, 2};
+//        int[] nums = {2, 1, 0, 0, 1, 2};
+        int[] nums = {2};
         Solution_0075 solution = new Solution_0075();
         solution.sortColors(nums);
         for (int num : nums)

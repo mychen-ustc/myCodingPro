@@ -59,6 +59,7 @@ class Solution_0079 {
                 }
             }
         }
+        visit[row][col] = false;    // 清除状态，回溯
         return flag;
     }
 }
@@ -66,11 +67,13 @@ class Solution_0079 {
 public class _0079_exist {
     public static void main(String[] args) {
         // [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]] "ABCCED"
-        char[][] board = {{'A', 'B', 'C', 'E'}, {'S', 'F', 'C', 'S'}, {'A', 'D', 'E', 'F'}};
+//        char[][] board = {{'A', 'B', 'C', 'E'}, {'S', 'F', 'C', 'S'}, {'A', 'D', 'E', 'F'}};
+        char[][] board = {{'A', 'A', 'A'}, {'B', 'C', 'D'}};
         Solution_0079 solution = new Solution_0079();
         System.out.println(solution.exist(board, "ABCCED"));
         System.out.println(solution.exist(board, "ABCCFD"));
         System.out.println(solution.exist(board, "ABCFD"));
         System.out.println(solution.exist(board, "ABCESF"));
+        System.out.println(solution.exist(board, "AAB"));
     }
 }

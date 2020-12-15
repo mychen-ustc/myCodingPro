@@ -54,7 +54,7 @@ class Solution_28 {
     boolean judge(TreeNode left, TreeNode right) {
         if (left == null && right == null)
             return true;
-        if (left == null || right == null || left.val != right.val)     // 不满足堆成条件
+        if (left == null || right == null || left.val != right.val)     // 不满足对称条件
             return false;
         return judge(left.left, right.right) && judge(left.right, right.left);  // 递归比较子节点
     }

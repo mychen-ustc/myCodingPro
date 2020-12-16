@@ -25,17 +25,34 @@
 
 package com.code.main._0_100;
 
+import java.util.ArrayList;
 import java.util.List;
 
 class Solution_0139 {
     public boolean wordBreak(String s, List<String> wordDict) {
-        return true;
+        boolean flag = true;
+        for (String word : wordDict) {
+            flag &= judge(s, word);
+        }
+        return flag;
+    }
+
+    // 判断字符串中是否存在某个子串
+    public boolean judge(String s, String word) {
+        return s.indexOf(word) >= 0;
     }
 }
 
 public class _0139_wordBreak {
     public static void main(String[] args) {
-        // "leetcode"
-        // ["leet","code"]
+        // "leetcode" ["leet","code"]
+        // "catsandog" ["cats","dog","sand","and","cat"]
+        String s = "applepenapple";
+        List<String> wordDict = new ArrayList<>();
+        wordDict.add("apple");
+        wordDict.add("pen");
+        Solution_0139 solution = new Solution_0139();
+        boolean ans = solution.wordBreak(s, wordDict);
+        System.out.println(ans);
     }
 }

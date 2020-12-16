@@ -39,35 +39,48 @@ class Solution_0141 {
     public boolean hasCycle(ListNode head) {
         // 思路1: 用hashmap记住每个节点，对链表做遍历。空间复杂度O(n)
         // 思路2: 快慢指针，快指针每次走2步，如果有环一定会追上慢指针。如果没有环，则会走到NULL
-        if (head == null || head.next == null)
-            return false;
-        ListNode slow = head, fast = head.next;
-        while (fast != slow) {
-            if (fast == null || fast.next == null) return false;
-            fast = fast.next.next;  // 快指针走2步
+//        if (head == null || head.next == null)
+//            return false;
+//        ListNode slow = head, fast = head.next;
+//        while (fast != slow) {
+//            if (fast == null || fast.next == null) return false;
+//            fast = fast.next.next;  // 快指针走2步
+//            slow = slow.next;
+//        }
+//        return true;
+
+        // 第二种写法，跟142题一致
+        if (head == null) return false;
+        ListNode slow = head, fast = head;
+        while (fast != null) {
             slow = slow.next;
+            if (fast.next != null) {
+                fast = fast.next.next;
+            } else {
+                return false;
+            }
+            if (fast == slow) return true;
         }
-        return true;
+        return false;
     }
 }
 
 public class _0141_hasCycle {
     public static void main(String[] args) {
         // [3,2,0,-4] 1
-//        ListNode a = new ListNode(3);
-//        ListNode b = new ListNode(2);
-//        ListNode c = new ListNode(0);
-//        ListNode d = new ListNode(-1);
-//
-//        a.next = b;
-//        b.next = c;
-//        c.next = d;
-//        d.next = b;
+        ListNode a = new ListNode(3);
+        ListNode b = new ListNode(2);
+        ListNode c = new ListNode(0);
+        ListNode d = new ListNode(4);
+        a.next = b;
+        b.next = c;
+        c.next = d;
+        d.next = b;
 
         // [1,2] -1
-        ListNode a = new ListNode(1);
-        ListNode b = new ListNode(2);
-        a.next = b;
+//        ListNode a = new ListNode(1);
+//        ListNode b = new ListNode(2);
+//        a.next = b;
         Solution_0141 solution = new Solution_0141();
         Boolean ans = solution.hasCycle(a);
         System.out.println(ans);

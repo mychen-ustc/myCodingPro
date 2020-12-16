@@ -19,12 +19,20 @@ package com.code.main._0_100;
 
 class Solution_0136 {
     public int singleNumber(int[] nums) {
-        return 0;
+        // 由于所有其他数字都是2个，异或之后就是0，将所有数字都进行异或操作，最后剩下的就是指出现一次的
+        int ans = 0;
+        for (int num : nums) {
+            ans ^= num;
+        }
+        return ans;
     }
 }
 
 public class _0136_singleNumber {
     public static void main(String[] args) {
         // [2,2,1]
+        int[] num = {5};
+        Solution_0136 solution = new Solution_0136();
+        System.out.println(solution.singleNumber(num));
     }
 }

@@ -15,16 +15,24 @@
  * // 你可以假设 k 总是有效的，且 1 ≤ k ≤ 数组的长度。
  */
 
-package com.code.main._101_200;
+package com.code.main._201_300;
+
+import java.util.Arrays;
 
 class Solution_0215 {
     public int findKthLargest(int[] nums, int k) {
-        return 0;
+        Arrays.sort(nums);
+        return nums[nums.length - k];
     }
 }
 
 public class _0215_findKthLargest {
     public static void main(String[] args) {
         // [3,2,1,5,6,4] 2
+        int[] nums = {3, 2, 1, 5, 6, 4};
+        int k = 2;
+        Solution_0215 solution = new Solution_0215();
+        int ans = solution.findKthLargest(nums, k);
+        System.out.println(ans);
     }
 }

@@ -36,12 +36,55 @@ package com.code.main._201_300;
  */
 class Solution_0226 {
     public TreeNode invertTree(TreeNode root) {
-        return null;
+//        if (root == null || (root.left == null && root.right == null))  // 节点为空或者左右子树都为空
+//            return root;
+//        TreeNode left = invertTree(root.left);
+//        TreeNode right = invertTree(root.right);
+//        if (root.left == null) {    // 左子树为空，右子树不为空
+//            root.left = right;
+//            root.right = null;
+//        } else if (root.right == null) {    // 右子树为空，左子树不为空
+//            root.right = left;
+//            root.left = null;
+//        } else {    // 左右子树都不空
+//            root.left = right;
+//            root.right = left;
+//        }
+//        return root;
+
+        // 代码简化: 上面的逻辑判断都可以省掉，只要一个root == null分支即可
+        if (root == null) return null;
+        TreeNode left = invertTree(root.left);
+        TreeNode right = invertTree(root.right);
+        root.left = right;
+        root.right = left;
+        return root;
     }
 }
 
 public class _0226_invertTree {
     public static void main(String[] args) {
         // [4,2,7,1,3,6,9]
+//        TreeNode a = new TreeNode(4);
+//        TreeNode b = new TreeNode(2);
+//        TreeNode c = new TreeNode(7);
+//        TreeNode d = new TreeNode(1);
+//        TreeNode e = new TreeNode(3);
+//        TreeNode f = new TreeNode(6);
+//        TreeNode g = new TreeNode(9);
+//        a.left = b;
+//        a.right = c;
+//        b.left = d;
+//        b.right = e;
+//        c.left = f;
+//        c.right = g;
+
+        // [1,2]
+        TreeNode a = new TreeNode(1);
+        TreeNode b = new TreeNode(2);
+        a.left = b;
+
+        Solution_0226 solution = new Solution_0226();
+        TreeNode root = solution.invertTree(a);
     }
 }

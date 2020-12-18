@@ -19,12 +19,37 @@ package com.code.main._201_300;
 
 class Solution_0238 {
     public int[] productExceptSelf(int[] nums) {
-        return null;
+        // 动态规划：将数组的乘积按矩阵拆分为上下两部分。对角线都是1。
+        // 下半部分的乘积用dp数组维护，上半部分只需要一个变量即可
+        // 由于输出数组不视为额外空间，按照题目要求，这种方法的空间复杂度为O(1)
+        int len = nums.length;  // 输入数组的长度
+        int[] dp = new int[len];    // 下半部分的递推数组
+        for (int i = 0; i < len; i++) { // 初始化数组
+            dp[i] = 1;
+        }
+        // 递推下三角(左侧乘积)
+        for (int i = 1; i < len; i++) {
+            dp[i] = dp[i - 1] * nums[i - 1];
+        }
+        // 组合上三角的乘积(右侧乘积)
+        int product = 1;
+        for (int i = len - 1; i >= 0; i--) {
+            dp[i] = dp[i] * product;   // 组合上三角和下三角的乘积
+            product *= nums[i];     // 更新上三角的累计乘积
+        }
+        return dp;
     }
 }
 
 public class _0238_productExceptSelf {
     public static void main(String[] args) {
         // [1,2,3,4]
+//        int[] nums = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        int[] nums = {1, 2, 3, 4};
+        Solution_0238 solution = new Solution_0238();
+        int[] ans = solution.productExceptSelf(nums);
+        for (int num : ans) {
+            System.out.println(num);
+        }
     }
 }

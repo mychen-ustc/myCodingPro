@@ -35,11 +35,6 @@
 
 package com.code.main._301_400;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -51,33 +46,22 @@ import java.util.Queue;
  */
 class Solution_0337 {
     public int rob(TreeNode root) {
-        // 分析：不能偷相邻的2层，但是可以一次偷整层的所有房屋，先计算每层的金额总数，构建一个数组
-        List<Integer> moneys = new ArrayList<>();
-        Queue<TreeNode> queue = new LinkedList<>();
-        if (root == null) return 0;     // 如果输入为空，返回0
-        queue.offer(root);
-        while (!queue.isEmpty()) {
-            int size = queue.size();
-            int money = 0;
-            for (int i = 0; i < size; i++) {    // 遍历一层
-                TreeNode node = queue.poll();
-                money += node.val;
-                if (node.left != null) queue.offer(node.left);
-                if (node.right != null) queue.offer(node.right);
-            }
-            moneys.add(money);
-        }
-        // 基于金额数组计算最大总额: 动态规划 dp[i] 表示截止到第i家时的最大金额
-        int len = moneys.size();
-        int[] dp = new int[moneys.size()];
-        dp[0] = moneys.get(0);
-        if (len == 1) return dp[0];
-        dp[1] = moneys.get(1);
-        for (int i = 2; i < len; i++) {
-            dp[i] = Math.max(dp[i - 2] + moneys.get(i), dp[i - 1]);     // 有2种选择：偷第i家和不偷第i家
-        }
+        // 动态规划，dp[0]表示不偷根节点，dp[1]表示偷根节点
+        int[] res = dfs(root);
+        return Math.max(res[0], res[1]);
+    }
 
-        return Math.max(dp[len - 2], dp[len - 1]);
+    // 树的后续遍历，计算根节点偷或者不偷的最大总收益
+    public int[] dfs(TreeNode node) {
+        if (node == null) {
+            return new int[]{0, 0};
+        }
+        int[] left = dfs(node.left);
+        int[] right = dfs(node.right);
+        int[] dp = new int[2];  // dp[0] 不偷当前节点(左右子树都可以偷)， dp[1]偷当前节点(不能偷左右子节点)
+        dp[0] = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
+        dp[1] = node.val + left[0] + right[0];
+        return dp;
     }
 }
 

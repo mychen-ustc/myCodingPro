@@ -1,0 +1,12 @@
+package com.code.main._301_400;
+
+// Definition for a binary tree node.
+public class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int x) {
+        val = x;
+    }
+}

@@ -34,7 +34,7 @@ package com.code.main._101_200;
 
 class Solution_0122 {
     public int maxProfit(int[] prices) {
-//        // 解法1 动态规划: dp[i][j]表示当天的现金流。dp[i][0]表示当天不持有股票, dp[i][1]当天持有股票
+//        // 解法1 动态规划: dp[i][j]表示当天的收益。dp[i][0]表示当天不持有股票, dp[i][1]当天持有股票
 //        int n = prices.length;
 //        int[][] dp = new int[n][2];
 //        dp[0][0] = 0;

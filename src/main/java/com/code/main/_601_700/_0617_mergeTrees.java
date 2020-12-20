@@ -23,7 +23,7 @@
  * //     5   4   7
  */
 
-package com.code.main._501_600;
+package com.code.main._601_700;
 
 /**
  * Definition for a binary tree node.

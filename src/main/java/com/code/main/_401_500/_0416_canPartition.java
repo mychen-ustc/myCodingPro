@@ -22,32 +22,59 @@ package com.code.main._401_500;
 
 class Solution_0416 {
     public boolean canPartition(int[] nums) {
-        // 分析: 先求数组的总和sum，然后寻找能组成sum/2的子数组
-        // 本解法超出时间限制
-        int sum = 0, max = Integer.MIN_VALUE;
+        // NP问题，转化0-1背包问题，用动态规划求解. 见_0416.png
+        // 解法1：动态规划
+//        int n = nums.length;
+//        int sum = 0, max = 0;
+//        for (int num : nums) {
+//            sum += num;
+//            max = Math.max(max, num);
+//        }
+//        int target = sum / 2;
+//        if (n < 2 || sum % 2 != 0 || max > target) return false;    // 三种情况不可能有可行解
+//        boolean[][] dp = new boolean[n][target + 1];    // dp[i][j]表示从数组的[0,j]范围内选取若干个数，是否存在和为j的组合
+//        for (int i = 0; i < n; i++) {   // 初始情况1: 目标和为0, 所有数字不取即可
+//            dp[i][0] = true;
+//        }
+//        dp[0][nums[0]] = true;  // 初始情况2: [0,0]范围内只有nums[0]，可以组合成target=num[0]
+//        for (int i = 1; i < n; i++) {   // 递推遍历所有[0,i]的范围
+//            int num = nums[i];
+//            for (int j = 1; j <= target; j++) { // 递推目标和
+//                if (j >= num) {     // num比target小，有2种情况转移： 1.[0,i-1]范围内的解, 2.将num加入组合，看j-num在[0,i-1]是否有解
+//                    dp[i][j] = dp[i - 1][j] | dp[i - 1][j - num];
+//                } else {    // num比target，不能加入组合，只有1种情况转移 [0,i-1]范围内的解
+//                    dp[i][j] = dp[i - 1][j];
+//                }
+//            }
+//        }
+//        return dp[n - 1][target];
+
+        // 解法1：由于只从上一行转移而来，可简化空间为一维数组,时间性能也有所改善
+        int n = nums.length;
+        if (n < 2) {
+            return false;
+        }
+        int sum = 0, max = 0;
         for (int num : nums) {
             sum += num;
             max = Math.max(max, num);
         }
-        if (sum % 2 != 0 || max > sum % 2)  // 如果总和不是偶数，或者最大值超过总和一半
+        if (sum % 2 != 0) {
             return false;
-        return dfs(nums, sum / 2, 0);
-    }
-
-    // 递归回溯查找子数组: 参数只需额外传入要查找的目标，当前查找的索引
-    // 如果要给出找到的子数组组合，就再传入一个列表
-    public boolean dfs(int[] nums, int target, int i) {
-        if (i == nums.length - 1)   // 已经查找到最后一个数字
-            return nums[i] == target;
-        if (nums[i] == target)  // 已经找到满足条件的组合
-            return true;
-        target -= nums[i];
-        boolean flag = dfs(nums, target, i + 1);
-        if (flag)
-            return true;
-        // 回溯
-        target += nums[i];
-        return dfs(nums, target, i + 1);
+        }
+        int target = sum / 2;
+        if (max > target) {
+            return false;
+        }
+        boolean[] dp = new boolean[target + 1];
+        dp[0] = true;
+        for (int i = 0; i < n; i++) {
+            int num = nums[i];
+            for (int j = target; j >= num; --j) {   // 不处理j<num的情况，因为dp[i][j] = dp[i - 1][j] 是共用的，只考虑dp[i - 1][j - num]的转移
+                dp[j] |= dp[j - num];
+            }
+        }
+        return dp[target];
     }
 }
 

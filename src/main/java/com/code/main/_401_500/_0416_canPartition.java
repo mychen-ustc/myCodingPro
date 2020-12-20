@@ -20,9 +20,6 @@
 
 package com.code.main._401_500;
 
-import java.util.ArrayList;
-import java.util.List;
-
 class Solution_0416 {
     public boolean canPartition(int[] nums) {
         // 分析: 先求数组的总和sum，然后寻找能组成sum/2的子数组
@@ -32,7 +29,7 @@ class Solution_0416 {
             sum += num;
             max = Math.max(max, num);
         }
-        if (sum % 2 != 0 || nums.length % 2 != 0 || max > sum % 2)  // 如果个数不是偶数，或者总和不是偶数，或者最大值超过总和一半
+        if (sum % 2 != 0 || max > sum % 2)  // 如果总和不是偶数，或者最大值超过总和一半
             return false;
         return dfs(nums, sum / 2, 0);
     }

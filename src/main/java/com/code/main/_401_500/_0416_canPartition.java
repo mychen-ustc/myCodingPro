@@ -27,12 +27,13 @@ class Solution_0416 {
     public boolean canPartition(int[] nums) {
         // 分析: 先求数组的总和sum，然后寻找能组成sum/2的子数组
         // 本解法超出时间限制
-        int sum = 0;
+        int sum = 0, max = Integer.MIN_VALUE;
         for (int num : nums) {
             sum += num;
+            max = Math.max(max, num);
         }
-        if (sum % 2 != 0) return false;
-        List<Integer> list = new ArrayList<>();
+        if (sum % 2 != 0 || nums.length % 2 != 0 || max > sum % 2)  // 如果个数不是偶数，或者总和不是偶数，或者最大值超过总和一半
+            return false;
         return dfs(nums, sum / 2, 0);
     }
 

@@ -65,50 +65,54 @@ class Solution_0538 {
 //            convertBST(root.left);  // 处理左子树
 //        }
 //        return root;
-//
-//        // 解法2: Morris遍历
-//
+//    }
+
+    // 解法2: Morris遍历
+//    public TreeNode convertBST(TreeNode root) {
+//        int sum = 0;
+//        TreeNode cur = root;    // 当前处理节点，用于遍历二叉树
+//        while (cur != null) {
+//            if (cur.right == null) {   // 右子节点为空，处理当前节点，然后处理左子树
+//                sum += cur.val;
+//                cur.val = sum;
+//                cur = cur.left;   // 处理左子树
+//            } else {    // 右子节点不为空，将右子树最左节点的左指针指向当前节点，然后处理右子树
+//                TreeNode succ = getSuccessor(cur);
+//                if (succ.left == null) {
+//                    succ.left = cur;
+//                    cur = cur.right;
+//                } else {
+//                    succ.left = null;   // 还原最左节点的左指针（本身就是null）
+//                    sum += cur.val;
+//                    cur.val = sum;
+//                    cur = cur.left;
+//                }
+//            }
+//        }
+//        return root;
 //    }
 //
 //    public TreeNode getSuccessor(TreeNode node) {
 //        TreeNode succ = node.right;
-//        while (succ.left != null && succ.left != node) {
+//        while (succ.left != null && succ.left != node) {    // 右子树最左节点不为空，且未指向当前节点
 //            succ = succ.left;
 //        }
 //        return succ;
 //    }
 
-    // 解法2:
+    // 解法1plus: 去掉全局变量，改用辅助函数和传参
     public TreeNode convertBST(TreeNode root) {
-        int sum = 0;
-        TreeNode cur = root;    // 当前处理节点，用于遍历二叉树
-        while (cur != null) {
-            if (cur.right == null) {   // 右子节点为空，处理当前节点，然后处理左子树
-                sum += cur.val;
-                cur.val = sum;
-                cur = cur.left;   // 处理左子树
-            } else {    // 右子节点不为空，将右子树最左节点的左指针指向当前节点，然后处理右子树
-                TreeNode succ = getSuccessor(cur);
-                if (succ.left == null) {
-                    succ.left = cur;
-                    cur = cur.right;
-                } else {
-                    succ.left = null;   // 还原最左节点的左指针（本身就是null）
-                    sum += cur.val;
-                    cur.val = sum;
-                    cur = cur.left;
-                }
-            }
-        }
+        dfs(root, 0);
         return root;
     }
 
-    public TreeNode getSuccessor(TreeNode node) {
-        TreeNode succ = node.right;
-        while (succ.left != null && succ.left != node) {    // 右子树最左节点不为空，且未指向当前节点
-            succ = succ.left;
-        }
-        return succ;
+    // 递归处理: sum是当前已累积的和
+    public int dfs(TreeNode node, int preval) {
+        if (node == null)
+            return preval;
+        int rightVal = dfs(node.right, preval);   // 处理右子树
+        node.val += rightVal;   // 当前节点的值加上右子节点的值
+        return dfs(node.left, node.val);    // 处理左子树
     }
 }
 

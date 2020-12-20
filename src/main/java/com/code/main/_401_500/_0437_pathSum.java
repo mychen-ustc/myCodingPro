@@ -45,53 +45,54 @@ package com.code.main._401_500;
  */
 class Solution_0437 {
     public int pathSum(TreeNode root, int sum) {
-        int ans = dfs(root, sum, sum);
-        return ans;
+        if (root == null) return 0;
+        int cnt1 = countPath(root, sum);
+        int cnt2 = pathSum(root.left, sum);
+        int cnt3 = pathSum(root.right, sum);
+        return cnt1 + cnt2 + cnt3;
     }
 
     // 深度优先遍历寻找路径
-    public int dfs(TreeNode node, int sum, int target) {
+    public int countPath(TreeNode node, int target) {
         if (node == null) return 0;
-        if (node.val == target) return 1;
-        // 包含当前结点
-        int leftWithRoot = dfs(node.left, sum, target - node.val);
-        int rightWithRoot = dfs(node.right, sum, target - node.val);
-        // 不包含当前结点(从字节点开始查找)
-        int left = dfs(node.left, sum, sum);
-        int right = dfs(node.right, sum, sum);
-        return leftWithRoot + rightWithRoot + left + right;
+        target -= node.val;     // 计算距离目标的差值
+        int result = target == 0 ? 1 : 0;  // 截止到当前节点构成一组解
+        // 以子节点为起点构建路径
+        int left = countPath(node.left, target);
+        int right = countPath(node.right, target);
+        return result + left + right;
     }
 }
 
 public class _0437_pathSum {
     public static void main(String[] args) {
         Solution_0437 solution = new Solution_0437();
-
         // [10,5,-3,3,2,null,11,3,-2,null,1] 8
-//        TreeNode a = new TreeNode(10);
-//        TreeNode b = new TreeNode(5);
-//        TreeNode c = new TreeNode(-3);
-//        TreeNode d = new TreeNode(3);
-//        TreeNode e = new TreeNode(2);
-//        TreeNode f = new TreeNode(11);
-//        TreeNode g = new TreeNode(3);
-//        TreeNode h = new TreeNode(-2);
-//        TreeNode i = new TreeNode(1);
-//        a.left = b;
-//        a.right = c;
-//        b.left = d;
-//        b.right = e;
-//        c.right = f;
-//        d.left = g;
-//        d.right = h;
-//        e.right = i;
-//        System.out.println(solution.pathSum(a, 8));
-
-        TreeNode a = new TreeNode(1);
-        TreeNode b = new TreeNode(-2);
-        TreeNode c = new TreeNode(3);
+        TreeNode a = new TreeNode(10);
+        TreeNode b = new TreeNode(5);
+        TreeNode c = new TreeNode(-3);
+        TreeNode d = new TreeNode(3);
+        TreeNode e = new TreeNode(2);
+        TreeNode f = new TreeNode(11);
+        TreeNode g = new TreeNode(3);
+        TreeNode h = new TreeNode(-2);
+        TreeNode i = new TreeNode(1);
         a.left = b;
-        b.right = c;
-        System.out.println(solution.pathSum(a, 3));
+        a.right = c;
+        b.left = d;
+        b.right = e;
+        c.right = f;
+        d.left = g;
+        d.right = h;
+        e.right = i;
+        System.out.println(solution.pathSum(a, 8));
+
+        // [1,-2,null,null,3]
+        TreeNode a2 = new TreeNode(1);
+        TreeNode b2 = new TreeNode(-2);
+        TreeNode c2 = new TreeNode(3);
+        a2.left = b2;
+        b2.right = c2;
+        System.out.println(solution.pathSum(a2, 3));
     }
 }

@@ -31,14 +31,37 @@
 
 package com.code.main._0_100;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class Solution_0006 {
     public String convert(String s, int numRows) {
-        return "";
+        // 按行排序，用一个行指针和方向标识，控制字符应该放到哪一行
+        if (numRows == 1) return s;
+        List<StringBuilder> list = new ArrayList<>();
+        for (int i = 0; i < numRows && i < s.length(); i++) {   // 初始化行列表
+            list.add(new StringBuilder());
+        }
+        int row = 0;    // 当前行
+        boolean goDown = false;  // 往下走？根据下面的方向变更条件，需要将初始值设为false
+        for (char c : s.toCharArray()) {
+            list.get(row).append(c);
+            if (row == 0 || row == numRows - 1)     // 到达上顶部或者底部，反向
+                goDown = !goDown;
+            row += goDown ? 1 : -1;  // 更新行（要判断方向）
+        }
+        StringBuilder ans = new StringBuilder();
+        for (StringBuilder builder : list) {
+            ans.append(builder);
+        }
+        return ans.toString();
     }
 }
 
 public class _0006_convert {
     public static void main(String[] args) {
-
+        // "PAYPALISHIRING" 3
+        Solution_0006 solution = new Solution_0006();
+        System.out.println(solution.convert("PAYPALISHIRING", 3));
     }
 }

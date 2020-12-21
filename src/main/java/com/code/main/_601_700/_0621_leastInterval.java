@@ -37,14 +37,33 @@
 
 package com.code.main._601_700;
 
+import java.util.Arrays;
+
 class Solution_0621 {
     public int leastInterval(char[] tasks, int n) {
-        return 0;
+        // 思路: 贪心，先安排出现次数最多的任务，让这个任务两次执行的时间间隔正好为n。再在这个时间间隔内填充其他的任务。
+        int[] buckets = new int[26];
+        for (int i = 0; i < tasks.length; i++) {    // 统计每个任务的执行次数
+            buckets[tasks[i] - 'A']++;
+        }
+        Arrays.sort(buckets);
+        int maxTimes = buckets[25];
+        int maxCount = 1;
+        for (int i = 25; i >= 1; i--) {
+            if (buckets[i] == buckets[i - 1])
+                maxCount++;
+            else
+                break;
+        }
+        int res = (maxTimes - 1) * (n + 1) + maxCount;
+        return Math.max(res, tasks.length);
     }
 }
 
 public class _0621_leastInterval {
     public static void main(String[] args) {
         // ["A","A","A","B","B","B"] 2
+        Solution_0621 solution = new Solution_0621();
+        System.out.println(solution.leastInterval(new char[]{'A', 'A', 'A', 'B', 'B', 'B'}, 2));
     }
 }

@@ -49,7 +49,7 @@ class Solution_0647 {
 
         // 解法3: Manacher算法 O(n) & O(n)  92.5%
         // 每2个字符之间添加特殊符号将长度扩充到2n+1, 在开头和结尾多加个$和!，保证循环不会越界（正常终止）
-        // 初始化的公司稍微难理解
+        // 初始化的公司稍微难理解: 画图理解2个限制条件
         int n = s.length();
         StringBuffer buffer = new StringBuffer("$#");
         for (int i = 0; i < n; ++i) {

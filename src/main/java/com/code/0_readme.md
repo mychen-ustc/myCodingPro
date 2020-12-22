@@ -6,6 +6,10 @@
 5. 最长回文子串 : medium, 动态规划、中心扩散、Manacher 算法 [****]
 6. Z 字形变换 : medium,
 7. 整数反转 : easy,
+8. 字符串转换整数 (atoi) : medium,
+9. 回文数 : easy,
+12. 整数转罗马数字 : medium,
+13. 罗马数字转整数 : easy,
 15. 三数之和 : medium, 
 17. 电话号码的字母组合 : medium, 递归回溯
 19. 删除链表的倒数第N个节点 : medium, 

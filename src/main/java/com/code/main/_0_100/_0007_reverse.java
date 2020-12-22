@@ -23,12 +23,39 @@ package com.code.main._0_100;
 
 class Solution_0007 {
     public int reverse(int x) {
-        return 0;
+        // 朴素解法: 用字符串和long记录中间值 35%
+//        if (x == 0) return 0;
+//        long num = (long) x;
+//        StringBuilder builder = new StringBuilder();
+//        int flag = num > 0 ? 1 : -1;  // 记录符号位
+//        long tmp = num > 0 ? num : -num;  // 求绝对值
+//        while (tmp > 0) {
+//            builder.append(tmp % 10);
+//            tmp /= 10;
+//        }
+//        num = Long.valueOf(builder.toString());
+//        if (num > Integer.MAX_VALUE || num <= Integer.MIN_VALUE)
+//            num = 0;
+//        return flag * (int) num;
+
+        // 解法2
+        int rev = 0;
+        while (x != 0) {
+            int pop = x % 10;
+            x /= 10;
+            if (rev > Integer.MAX_VALUE / 10 || (rev == Integer.MAX_VALUE / 10 && pop > 7)) return 0;
+            if (rev < Integer.MIN_VALUE / 10 || (rev == Integer.MIN_VALUE / 10 && pop < -8)) return 0;
+            rev = rev * 10 + pop;
+        }
+        return rev;
     }
 }
 
 public class _0007_reverse {
     public static void main(String[] args) {
         // 123
+        Solution_0007 solution = new Solution_0007();
+//        System.out.println(solution.reverse(123456789));
+        System.out.println(solution.reverse(-2147483648));
     }
 }

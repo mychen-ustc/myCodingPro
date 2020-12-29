@@ -47,12 +47,94 @@ package com.code.main._0_100;
 
 class Solution_0008 {
     public int myAtoi(String s) {
-        return 0;
+//        if (s.length() == 0) return 0;
+//        int flag = 1;
+//        int ans = 0;
+//        int i = 0;
+//        int INT_MAX = Integer.MAX_VALUE;
+//        while (i < s.length() && s.charAt(i) == ' ') i++;    // 跳过初始的空格
+//        if (i == s.length()) return 0;  // 对于极端情况：字符串只包含空格
+//        char ch = s.charAt(i);
+//        if (ch == '-') {
+//            flag = -1;
+//            i++;
+//        } else if (ch == '+') {
+//            flag = 1;
+//            i++;
+//        } else if (ch < '0' && ch > '9') {    // 不能进行有效转换
+//            return 0;
+//        }
+//        // 可以进行有效转换
+//        while (i < s.length() && s.charAt(i) >= '0' && s.charAt(i) <= '9') {  // 遍历连续的数字
+//            int digit = s.charAt(i) - '0';
+//            if (ans < INT_MAX / 10 || (ans == INT_MAX / 10 && flag == 1 && digit < 7)
+//                    || (ans == INT_MAX / 10 && flag == -1 && digit < 8)) { // 还没有溢出
+//                ans = ans * 10 + digit;
+//            } else {
+//                ans = flag > 0 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+//                return ans;
+//            }
+//            i++;
+//        }
+//
+//        return ans * flag;
+
+
+        // 参考写法
+        int index = 0;
+        int sign = 1;
+        int total = 0;
+        if (s.length() == 0) {
+            return 0;
+        }
+        // 移除左侧的空格
+        while (index < s.length() && s.charAt(index) == ' ') {
+            index++;
+        }
+        if (index >= s.length()) {  // 只包含空格
+            return 0;
+        }
+        // 找到正负号
+        if (s.charAt(index) == '+' || s.charAt(index) == '-') {
+            sign = s.charAt(index) == '-' ? -1 : 1;
+            index++;
+        }
+        while (index < s.length()) {
+            int digit = s.charAt(index) - '0';
+            if (digit < 0 || digit > 9) {
+                break;
+            }
+
+            if (Integer.MAX_VALUE / 10 < total
+                    || (Integer.MAX_VALUE / 10 == total && Integer.MAX_VALUE % 10 < digit)) {
+                return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+            }
+
+            total = total * 10 + digit;
+            index++;
+        }
+
+        return total * sign;
     }
 }
 
 public class _0008_myAtoi {
     public static void main(String[] args) {
         // "42"
+        Solution_0008 solution = new Solution_0008();
+//        System.out.println(solution.myAtoi(""));
+//        System.out.println(solution.myAtoi("    "));
+//        System.out.println(solution.myAtoi("  42"));
+//        System.out.println(solution.myAtoi("  -42"));
+//        System.out.println(solution.myAtoi("  -+42"));
+//        System.out.println(solution.myAtoi("  4193 with words"));
+//        System.out.println(solution.myAtoi("  words and 987"));
+//        System.out.println(solution.myAtoi("  -91283472332"));
+//        System.out.println(solution.myAtoi("2147483648"));
+        System.out.println(solution.myAtoi("2147483646"));
+        System.out.println(solution.myAtoi("2147483647"));
+        System.out.println(solution.myAtoi("-2147483647"));
+        System.out.println(solution.myAtoi("-2147483648"));
+
     }
 }

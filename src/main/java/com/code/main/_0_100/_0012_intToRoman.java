@@ -45,12 +45,47 @@
 
 package com.code.main._0_100;
 
-class Solution {
+import java.util.HashMap;
+import java.util.Map;
+
+class Solution_0012 {
     public String intToRoman(int num) {
-        return "";
+        Map<Integer, String> map = new HashMap<>() {
+            {
+                put(1, "I");
+                put(4, "IV");
+                put(5, "V");
+                put(9, "IX");
+                put(10, "X");
+                put(40, "XL");
+                put(50, "L");
+                put(90, "XC");
+                put(100, "C");
+                put(400, "CD");
+                put(500, "D");
+                put(900, "CM");
+                put(1000, "M");
+            }
+        };
+        StringBuilder sbuild = new StringBuilder();
+        String str = String.valueOf(num);   // 将整数转为字符串
+        int power = str.length() - 1;   // 记录整数位10的多少次方
+        int i = 0;
+        while (i < power) {
+            int digit = str.charAt(i);
+            int tmp = (int) Math.pow(10, digit);
+        }
     }
 }
 
 public class _0012_intToRoman {
-    // 3
+    public static void main(String[] args) {
+        // 3
+        Solution_0012 solution = new Solution_0012();
+        System.out.println(solution.intToRoman(3));
+        System.out.println(solution.intToRoman(4));
+        System.out.println(solution.intToRoman(9));
+        System.out.println(solution.intToRoman(58));
+        System.out.println(solution.intToRoman(1994));
+    }
 }
